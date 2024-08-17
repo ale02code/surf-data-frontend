@@ -3,7 +3,7 @@ import LogoImg from "../assets/imgs/logo.png";
 function Login() {
   return (
     <div className="h-dvh w-screen flex justify-center items-center bg-blue-dark text-white text-xl">
-      <main className="form-signin h-auto w-[90%] max-w-[90%] bg-black rounded-lg bg-opacity-80">
+      <main className="form-signin h-auto w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px]">
         <form className="flex justify-center items-center flex-col p-5">
           <img
             className="mb-4 w-48 h-48 rounded-full"
