@@ -1,52 +1,53 @@
+import LogoImg from "../assets/imgs/logo.png";
+
 function Login() {
   return (
-    <main className="form-signin w-100 m-auto bg-gray-">
-      <form>
-        <img
-          className="mb-4"
-          src="/docs/5.3/assets/brand/bootstrap-logo.svg"
-          alt=""
-          width="72"
-          height="57"
-        />
-        <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+    <div className="h-screen w-screen flex justify-center items-center bg-blue-dark text-white">
+      <main className="form-signin h-auto w-72 max-w-[90%] bg-black rounded-lg bg-opacity-80">
+        <form className="flex justify-center items-center flex-col p-4">
+          <img
+            className="mb-4 w-32 h-32 rounded-full"
+            src={LogoImg}
+            alt="Surf Data Logo"
+          />
+          <h1 className="h3 mb-3 fw-normal capitalize">Por favor registrate</h1>
 
-        <div className="form-floating">
-          <input
-            type="email"
-            className="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-          />
-          <label htmlFor="floatingInput">Email address</label>
-        </div>
-        <div className="form-floating">
-          <input
-            type="password"
-            className="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          />
-          <label htmlFor="floatingPassword">Password</label>
-        </div>
-
-        <div className="form-check text-start my-3">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value="remember-me"
-            id="flexCheckDefault"
-          />
-          <label className="form-check-label" htmlFor="flexCheckDefault">
-            Remember me
-          </label>
-        </div>
-        <button className="btn btn-primary w-100 py-2" type="submit">
-          Sign in
-        </button>
-        <p className="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
-      </form>
-    </main>
+          <div className="form-floating flex justify-center  flex-col gap-3  w-[90%]">
+            <select
+              // className="outline-none text-black px-2 py-1 rounded-md w-full"
+              className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg"
+              name="Bases_de_datos"
+              id="select_DB"
+            >
+              <option disabled selected>
+                Selecciona un proyecto
+              </option>
+              <optgroup label="Bases de datos disponibles">
+                <option value="">Fruit Burst</option>
+                <option value="">Yummy Bakery</option>
+                <option value="">Donamania</option>
+                <option value="">Skitland</option>
+              </optgroup>
+            </select>
+            <div className="w-full flex flex-col">
+              <label htmlFor="">Introduce tu contraseña:</label>
+              <input
+                type="password"
+                className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg"
+                id="floatingPassword"
+                placeholder="Password"
+              />
+            </div>
+            <button className="bg-indigo-500 p-2.5 rounded-lg uppercase">
+              Ingresar
+            </button>
+          </div>
+          <p className="mt-5 mb-3 text-body-secondary">
+            Sistema Administrativo
+          </p>
+        </form>
+      </main>
+    </div>
   );
 }
 
