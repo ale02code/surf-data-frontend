@@ -2,8 +2,8 @@ import LogoImg from "../assets/imgs/logo.png";
 
 function Login() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-blue-dark text-white">
-      <main className="form-signin h-auto w-72 max-w-[90%] bg-black rounded-lg bg-opacity-80">
+    <div className="h-screen w-screen flex justify-center items-center bg-blue-dark text-white text-xl">
+      <main className="form-signin h-auto w-[85%] max-w-[90%] bg-black rounded-lg bg-opacity-80">
         <form className="flex justify-center items-center flex-col p-4">
           <img
             className="mb-4 w-32 h-32 rounded-full"
@@ -15,7 +15,7 @@ function Login() {
           <div className="form-floating flex justify-center  flex-col gap-3  w-[90%]">
             <select
               // className="outline-none text-black px-2 py-1 rounded-md w-full"
-              className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg"
+              className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 rounded-lg"
               name="Bases_de_datos"
               id="select_DB"
             >
@@ -33,7 +33,7 @@ function Login() {
               <label htmlFor="">Introduce tu contraseña:</label>
               <input
                 type="password"
-                className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg"
+                className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900  rounded-lg"
                 id="floatingPassword"
                 placeholder="Password"
               />
