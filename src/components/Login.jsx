@@ -1,6 +1,41 @@
+import { useEffect, useState } from "react";
 import LogoImg from "../assets/imgs/logo.png";
 
 function Login() {
+  const [loginData, setLoginData] = useState({ login_data: [] });
+  const [password, setPassword] = useState('');
+  const [selectedKey, setSelectedKey] = useState('');
+
+  useEffect(() => {
+    const fetchingData = async () => {
+      try {
+        const response = await fetch("/api/");
+        const responseJSON = await response.json();
+        setLoginData(responseJSON);
+      } catch (e) {
+        console.error(`Error with fetch data: ${e}`);
+      }
+    };
+
+    fetchingData();
+  }, []);
+
+  useEffect(() => {
+    console.log(loginData);
+  }, [loginData]);
+
+  const handleSelect = (llave) => {
+    setSelectedKey(llave);
+  };
+
+  const handleRegister = () => {
+    if (selectedKey === password) {
+      console.log("Registro exitoso");
+    } else {
+      console.log("La contraseña no coincide con la llave seleccionada");
+    }
+  };
+
   return (
     <div className="h-dvh w-screen flex justify-center items-center bg-blue-dark text-white text-xl">
       <main className="form-signin h-auto w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px]">
@@ -12,33 +47,40 @@ function Login() {
           />
           <h1 className="h3 mb-3 fw-normal capitalize">Por favor registrate</h1>
 
-          <div className="form-floating flex justify-center  flex-col gap-3  w-full">
+          <div className="form-floating flex justify-center flex-col gap-3 w-full">
             <select
-              // className="outline-none text-black px-2 py-1 rounded-md w-full"
               className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 rounded-lg"
               name="Bases_de_datos"
               id="select_DB"
+              defaultValue=""
+              onChange={(e) => handleSelect(e.target.value)}
             >
-              <option disabled selected>
+              <option disabled value="">
                 Selecciona un proyecto
               </option>
               <optgroup label="Bases de datos disponibles">
-                <option value="">Fruit Burst</option>
-                <option value="">Yummy Bakery</option>
-                <option value="">Donamania</option>
-                <option value="">Skitland</option>
+                {loginData.login_data.map((db) => (
+                  <option key={db.id} value={db.llave}>
+                    {db.empresa}
+                  </option>
+                ))}
               </optgroup>
             </select>
             <div className="w-full flex flex-col">
-              <label htmlFor="">Introduce tu contraseña:</label>
+              <label htmlFor="floatingPassword">Introduce tu contraseña:</label>
               <input
                 type="password"
-                className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900  rounded-lg"
+                className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 rounded-lg"
                 id="floatingPassword"
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)} 
               />
             </div>
-            <button className="bg-indigo-500 p-2.5 rounded-lg uppercase">
+            <button
+              type="button" 
+              className="bg-indigo-500 p-2.5 rounded-lg uppercase"
+              onClick={handleRegister} 
+            >
               Ingresar
             </button>
           </div>
