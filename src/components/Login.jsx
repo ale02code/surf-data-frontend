@@ -12,7 +12,7 @@ function Login() {
   useEffect(() => {
     const fetchingData = async () => {
       try {
-        const response = await fetch("/api/");
+        const response = await fetch("https://sales-manager-api.onrender.com/");
         const responseJSON = await response.json();
         setLoginData(responseJSON);
       } catch (e) {
@@ -33,7 +33,9 @@ function Login() {
     );
 
     if (selectedDB && selectedDB.llave === password) {
-      navigate(`/${selectedDB.empresa}/dashboard`);
+      navigate(
+        `https://sales-manager-api.onrender.com/${selectedDB.empresa}/dashboard`
+      );
     } else {
       setInputError(true);
     }
