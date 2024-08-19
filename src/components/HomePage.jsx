@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 function HomePage() {
   const { empresa } = useParams();
   const [data, setData] = useState(null);
+  const [ventas, setVentas] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,11 +20,100 @@ function HomePage() {
     fetchData();
   }, [empresa]);
 
+  useEffect(() => {
+    let name = empresa.toLowerCase().replace(" ", "_");
+
+    const fetchVentas = async () => {
+      try {
+        const response = await fetch(`/api/${name}/ventas`);
+        const result = await response.json();
+        setVentas(result);
+      } catch (error) {
+        console.error("Error fetching ventas:", error);
+      }
+    };
+
+    fetchVentas();
+  }, [ventas]);
+
   return (
-    <div className="database-page">
-      <h1>Base de Datos: {empresa}</h1> {/* Muestra el nombre de la empresa */}
-      {/* Aquí iría la estructura común que se aplica a todas las bases de datos */}
-    </div>
+    <section className="w-full overflow-x-hidden">
+      <div className="mx-auto overflow-x-hidden">
+        <header className="flex justify-center items-center pt-3 pb-2 mb-3 border-b border-gray-300 bg-[#212529] text-white">
+          <nav className="flex justify-center items-center space-x-5">
+            <p className="text-xl font-semibold uppercase cursor-pointer">
+              Insertar
+            </p>
+            <p className="text-xl font-semibold uppercase cursor-pointer">
+              Status
+            </p>
+          </nav>
+        </header>
+        <main className="w-[95%] mx-auto overflow-x-hidden">
+          <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
+            <h1 className="text-2xl font-bold">Dashboard {empresa}</h1>
+            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 capitalize">
+              <svg
+                className="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M3 6h18v12H3V6zm16 4H5v4h14v-4zm-2 0H7v2h10v-2zm-4 4h4v2h-4v-2zm-4 0h2v2H7v-2z" />
+              </svg>
+              New Sale
+            </button>
+          </div>
+
+          <h2 className="text-xl font-semibold mb-4">
+            Ventas Totales: {ventas ? ventas.ventas_data.length : 0}
+          </h2>
+          <div className="overflow-x-auto ">
+            <table className="min-w-full divide-y divide-gray-200 overflow-hidden">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    #
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Producto
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Precio
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Cantidad
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Opciones
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {ventas &&
+                  ventas.ventas_data.map((venta, index) => (
+                    <tr key={index}>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {venta.id}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {venta.producto}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {venta.precio}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {venta.cantidad}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">Options</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </section>
   );
 }
 
