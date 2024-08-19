@@ -12,7 +12,16 @@ function Login() {
   useEffect(() => {
     const fetchingData = async () => {
       try {
-        const response = await fetch("https://sales-manager-api.onrender.com/");
+        const response = await fetch(
+          "https://tu-backend.render.com/api/endpoint",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
         const responseJSON = await response.json();
         setLoginData(responseJSON);
       } catch (e) {
