@@ -6,11 +6,15 @@ function HomePage() {
   const [data, setData] = useState(null);
   const [ventas, setVentas] = useState(null);
 
+  // Normalizar el nombre de la empresa
+  const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
+
+  // Efecto para obtener datos del dashboard
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sales-manager-api.onrender.com/${empresa}/dashboard`
+          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/dashboard`
         );
         const result = await response.json();
         setData(result);
@@ -20,15 +24,14 @@ function HomePage() {
     };
 
     fetchData();
-  }, [empresa]);
+  }, [normalizedEmpresa]);
 
+  // Efecto para obtener datos de ventas
   useEffect(() => {
-    let name = empresa.toLowerCase().replace(" ", "_");
-
     const fetchVentas = async () => {
       try {
         const response = await fetch(
-          `https://sales-manager-api.onrender.com/${name}/ventas`
+          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/ventas`
         );
         const result = await response.json();
         setVentas(result);
@@ -38,7 +41,7 @@ function HomePage() {
     };
 
     fetchVentas();
-  }, [ventas]);
+  }, [normalizedEmpresa]);
 
   return (
     <section className="w-full overflow-x-hidden">
@@ -72,7 +75,7 @@ function HomePage() {
           <h2 className="text-xl font-semibold mb-4">
             Ventas Totales: {ventas ? ventas.ventas_data.length : 0}
           </h2>
-          <div className="overflow-x-auto ">
+          <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200 overflow-hidden">
               <thead className="bg-gray-50">
                 <tr>
