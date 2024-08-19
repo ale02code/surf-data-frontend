@@ -23,16 +23,14 @@ function Login() {
     fetchingData();
   }, []);
 
-  useEffect(() => {
-    console.log(loginData);
-  }, [loginData]);
-
   const handleSelect = (llave) => {
     setSelectedKey(llave);
   };
 
   const handleRegister = () => {
-    const selectedDB = loginData.login_data.find(db => db.llave === selectedKey);
+    const selectedDB = loginData.login_data.find(
+      (db) => db.llave === selectedKey
+    );
 
     if (selectedDB && selectedDB.llave === password) {
       navigate(`/${selectedDB.empresa}/dashboard`);
