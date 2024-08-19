@@ -9,7 +9,9 @@ function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/${empresa}/dashboard`);
+        const response = await fetch(
+          `https://sales-manager-api.onrender.com/${empresa}/dashboard`
+        );
         const result = await response.json();
         setData(result);
       } catch (error) {
@@ -25,7 +27,9 @@ function HomePage() {
 
     const fetchVentas = async () => {
       try {
-        const response = await fetch(`/api/${name}/ventas`);
+        const response = await fetch(
+          `https://sales-manager-api.onrender.com/${name}/ventas`
+        );
         const result = await response.json();
         setVentas(result);
       } catch (error) {
