@@ -3,8 +3,9 @@ import LogoImg from "../assets/imgs/logo.png";
 
 function Login() {
   const [loginData, setLoginData] = useState({ login_data: [] });
-  const [password, setPassword] = useState('');
-  const [selectedKey, setSelectedKey] = useState('');
+  const [password, setPassword] = useState("");
+  const [selectedKey, setSelectedKey] = useState("");
+  const [inputError, setInputError] = useState(false);
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -30,18 +31,22 @@ function Login() {
 
   const handleRegister = () => {
     if (selectedKey === password) {
-      console.log("Registro exitoso");
+      setInputError(false);
     } else {
-      console.log("La contraseña no coincide con la llave seleccionada");
+      setInputError(true);
     }
   };
 
+  let stylesInputError = inputError
+    ? "w-full p-2.5 bg-red-100 border-2 border-red-300 outline-none text-gray-900 rounded-lg"
+    : "w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg";
+
   return (
-    <div className="h-dvh w-screen flex justify-center items-center bg-blue-dark text-white text-xl">
-      <main className="form-signin h-auto w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px]">
-        <form className="flex justify-center items-center flex-col p-5">
+    <div className="h-dvh w-screen overflow-hidden flex justify-center items-center bg-blue-dark text-white text-xl">
+      <main className="form-signin h-auto max-h-[95%] w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px] overflow-hidden">
+        <form className="flex justify-center items-center flex-col px-5 py-3">
           <img
-            className="mb-4 w-48 h-48 rounded-full"
+            className="mb-2 w-44 h-44 rounded-full"
             src={LogoImg}
             alt="Surf Data Logo"
           />
@@ -49,7 +54,7 @@ function Login() {
 
           <div className="form-floating flex justify-center flex-col gap-3 w-full">
             <select
-              className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 rounded-lg"
+              className="w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg"
               name="Bases_de_datos"
               id="select_DB"
               defaultValue=""
@@ -70,16 +75,20 @@ function Login() {
               <label htmlFor="floatingPassword">Introduce tu contraseña:</label>
               <input
                 type="password"
-                className="w-full p-2.5 bg-gray-100 border border-gray-300 outline-none text-gray-900 rounded-lg"
+                className={stylesInputError}
                 id="floatingPassword"
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)} 
+                maxLength={4}
+                onChange={(e) => setPassword(e.target.value)}
               />
+              {inputError && (
+                <small className="text-red-300">contraseña incorrecta</small>
+              )}
             </div>
             <button
-              type="button" 
+              type="button"
               className="bg-indigo-500 p-2.5 rounded-lg uppercase"
-              onClick={handleRegister} 
+              onClick={handleRegister}
             >
               Ingresar
             </button>
