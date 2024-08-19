@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LogoImg from "../assets/imgs/logo.png";
 
 function Login() {
@@ -6,6 +7,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [selectedKey, setSelectedKey] = useState("");
   const [inputError, setInputError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -30,8 +32,10 @@ function Login() {
   };
 
   const handleRegister = () => {
-    if (selectedKey === password) {
-      setInputError(false);
+    const selectedDB = loginData.login_data.find(db => db.llave === selectedKey);
+
+    if (selectedDB && selectedDB.llave === password) {
+      navigate(`/${selectedDB.empresa}/dashboard`);
     } else {
       setInputError(true);
     }
