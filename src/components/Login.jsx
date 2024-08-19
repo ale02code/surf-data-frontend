@@ -33,9 +33,7 @@ function Login() {
     );
 
     if (selectedDB && selectedDB.llave === password) {
-      navigate(
-        `https://sales-manager-api.onrender.com/${selectedDB.empresa}/dashboard`
-      );
+      navigate(`/${selectedDB.empresa}/dashboard`);
     } else {
       setInputError(true);
     }

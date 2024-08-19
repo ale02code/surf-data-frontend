@@ -6,15 +6,13 @@ function HomePage() {
   const [data, setData] = useState(null);
   const [ventas, setVentas] = useState(null);
 
-  // Normalizar el nombre de la empresa
   const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
 
-  // Efecto para obtener datos del dashboard
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/dashboard`
+          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/dashboard` 
         );
         const result = await response.json();
         setData(result);
@@ -26,7 +24,6 @@ function HomePage() {
     fetchData();
   }, [normalizedEmpresa]);
 
-  // Efecto para obtener datos de ventas
   useEffect(() => {
     const fetchVentas = async () => {
       try {
