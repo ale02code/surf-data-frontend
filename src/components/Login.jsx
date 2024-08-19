@@ -13,7 +13,7 @@ function Login() {
     const fetchingData = async () => {
       try {
         const response = await fetch(
-          "https://tu-backend.render.com/api/endpoint",
+          "https://sales-manager-api.onrender.com/",
           {
             method: "GET",
             headers: {
