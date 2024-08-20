@@ -14,13 +14,34 @@ function HomePage() {
   // state
   const [data, setData] = useState(null);
   const [ventas, setVentas] = useState(null);
+  const [formData, setFormData] = useState({
+    nombre: "",
+    producto: "",
+    precio: "",
+    cantidad: 0,
+  });
+
   const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
 
   const handleForm = () => {
     setSellFormOpen((prevState) => !prevState);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
   const handleEdit = () => {};
+
+  const handlePrint = () => {};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -139,7 +160,8 @@ function HomePage() {
                           Edit
                         </button>
                         <img
-                          className="h-12"
+                          onClick={handlePrint}
+                          className="h-12 hover:cursor-pointer"
                           src={PrinterIcon}
                           alt="img printer"
                         />
