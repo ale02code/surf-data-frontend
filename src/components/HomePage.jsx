@@ -1,18 +1,32 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { SellFormContext } from "../context/SellFormContext";
+import SellForm from "./SellForm";
+import PrinterIcon from "../assets/icons/printer.png";
 
 function HomePage() {
+  // contexts
+  const { sellFormOpen, setSellFormOpen } = useContext(SellFormContext);
+
+  // params
   const { empresa } = useParams();
+
+  // state
   const [data, setData] = useState(null);
   const [ventas, setVentas] = useState(null);
-
   const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
+
+  const handleForm = () => {
+    setSellFormOpen((prevState) => !prevState);
+  };
+
+  const handleEdit = () => {};
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/dashboard` 
+          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/dashboard`
         );
         const result = await response.json();
         setData(result);
@@ -42,8 +56,10 @@ function HomePage() {
 
   return (
     <section className="w-full overflow-x-hidden">
+      {sellFormOpen && <SellForm />}
+
       <div className="mx-auto overflow-x-hidden">
-        <header className="flex justify-center items-center pt-3 pb-2 mb-3 border-b border-gray-300 bg-[#212529] text-white">
+        <header className="relative z-20 flex justify-center items-center pt-3 pb-2 mb-3 border-b border-gray-300 bg-[#212529] text-white">
           <nav className="flex justify-center items-center space-x-5">
             <p className="text-xl font-semibold uppercase cursor-pointer">
               Insertar
@@ -56,7 +72,10 @@ function HomePage() {
         <main className="w-[95%] mx-auto overflow-x-hidden">
           <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
             <h1 className="text-2xl font-bold">Dashboard {empresa}</h1>
-            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 capitalize">
+            <button
+              onClick={handleForm}
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 capitalize"
+            >
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -93,7 +112,10 @@ function HomePage() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody
+                className="bg-white divide-y  divide-gray-200"
+                style={{ width: "100%", tableLayout: "fixed" }}
+              >
                 {ventas &&
                   ventas.ventas_data.map((venta, index) => (
                     <tr key={index}>
@@ -109,7 +131,19 @@ function HomePage() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         {venta.cantidad}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">Options</td>
+                      <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3">  
+                        <button
+                          className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
+                          onClick={handleEdit}
+                        >
+                          Edit
+                        </button>
+                        <img
+                          className="h-12"
+                          src={PrinterIcon}
+                          alt="img printer"
+                        />
+                      </td>
                     </tr>
                   ))}
               </tbody>
