@@ -131,7 +131,7 @@ function HomePage() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         {venta.cantidad}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3">  
+                      <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3 w-[220px]">
                         <button
                           className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
                           onClick={handleEdit}
