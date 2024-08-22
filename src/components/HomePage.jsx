@@ -35,10 +35,6 @@ function HomePage() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
-
   const handleEdit = () => {};
 
   const handlePrint = () => {};
@@ -142,6 +138,9 @@ function HomePage() {
                     <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {venta.id}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {venta.nombre}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {venta.producto}

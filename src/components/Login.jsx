@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { SelectedDBContext } from "../context/SelectedDBContext";
 import LogoImg from "../assets/imgs/logo.png";
 
 function Login() {
@@ -8,6 +9,8 @@ function Login() {
   const [selectedKey, setSelectedKey] = useState("");
   const [inputError, setInputError] = useState(false);
   const navigate = useNavigate();
+
+  const { setDb } = useContext(SelectedDBContext);
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -33,6 +36,7 @@ function Login() {
     );
 
     if (selectedDB && selectedDB.llave === password) {
+      setDb(selectedDB.empresa);
       navigate(`/${selectedDB.empresa}/dashboard`);
     } else {
       setInputError(true);
