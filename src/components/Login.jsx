@@ -9,7 +9,6 @@ function Login() {
   const [selectedKey, setSelectedKey] = useState("");
   const [inputError, setInputError] = useState(false);
   const navigate = useNavigate();
-
   const { setDb } = useContext(SelectedDBContext);
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function Login() {
     : "w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg";
 
   return (
-    <div className="h-dvh w-screen overflow-hidden flex justify-center items-center bg-blue-dark text-white text-xl">
+    <div className="h-screen w-screen overflow-hidden flex justify-center items-center bg-blue-900 text-white text-xl">
       <main className="form-signin h-auto max-h-[95%] w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px] overflow-hidden">
         <form className="flex justify-center items-center flex-col px-5 py-3">
           <img
@@ -56,7 +55,7 @@ function Login() {
             src={LogoImg}
             alt="Surf Data Logo"
           />
-          <h1 className="h3 mb-3 fw-normal capitalize">Por favor registrate</h1>
+          <h1 className="h3 mb-3 font-normal capitalize">Por favor regístrate</h1>
 
           <div className="form-floating flex justify-center flex-col gap-3 w-full">
             <select
@@ -88,7 +87,7 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {inputError && (
-                <small className="text-red-300">contraseña incorrecta</small>
+                <small className="text-red-300">Contraseña incorrecta</small>
               )}
             </div>
             <button
