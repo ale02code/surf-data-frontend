@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { SellFormContext } from "../context/SellFormContext";
 import SellForm from "./SellForm";
-import PrinterIcon from "../assets/icons/printer.png";
+import PrinterButton from "./PrinterButton";
 
 function HomePage() {
   // Contexts
@@ -14,7 +14,10 @@ function HomePage() {
 
   // State
   const [data, setData] = useState(null);
-  const [ventas, setVentas] = useState(null);
+  const [ventas, setVentas] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedVenta, setSelectedVenta] = useState(null);
 
   // Toggle the sell form
   const handleFormToggle = () => {
@@ -26,12 +29,15 @@ function HomePage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/dashboard`
+          `https://sales-manager-api.onrender.com/${normalizedEmpresa}/ventas`
         );
+        if (!response.ok) throw new Error("Failed to fetch dashboard data");
         const result = await response.json();
         setData(result);
       } catch (error) {
-        console.error("Error fetching dashboard data:", error);
+        setError("Error fetching dashboard data");
+      } finally {
+        setLoadingData(false);
       }
     };
 
@@ -45,15 +51,23 @@ function HomePage() {
         const response = await fetch(
           `https://sales-manager-api.onrender.com/${normalizedEmpresa}/ventas`
         );
+        if (!response.ok) throw new Error("Failed to fetch ventas data");
         const result = await response.json();
-        setVentas(result);
+        setVentas(result.ventas_data);
       } catch (error) {
-        console.error("Error fetching ventas data:", error);
+        setError("Error fetching ventas data");
+      } finally {
+        setLoadingData(false);
       }
     };
 
     fetchVentas();
   }, [normalizedEmpresa]);
+
+  // Handle print button click
+  const handlePrintClick = (venta) => {
+    setSelectedVenta(venta);
+  };
 
   // Render component
   return (
@@ -63,8 +77,12 @@ function HomePage() {
       <div className="mx-auto overflow-x-hidden">
         <header className="relative z-20 flex justify-center items-center pt-3 pb-2 mb-3 border-b border-gray-300 bg-[#212529] text-white">
           <nav className="flex justify-center items-center space-x-5">
-            <p className="text-xl font-semibold uppercase cursor-pointer">Insertar</p>
-            <p className="text-xl font-semibold uppercase cursor-pointer">Status</p>
+            <p className="text-xl font-semibold uppercase cursor-pointer">
+              Insertar
+            </p>
+            <p className="text-xl font-semibold uppercase cursor-pointer">
+              Status
+            </p>
           </nav>
         </header>
 
@@ -87,51 +105,67 @@ function HomePage() {
             </button>
           </div>
 
-          <h2 className="text-xl font-semibold mb-4">
-            Ventas Totales: {ventas ? ventas.ventas_data.length : 0}
-          </h2>
+          {loadingData ? (
+            <p className="text-center text-gray-500">Loading...</p>
+          ) : error ? (
+            <p className="text-center text-red-500">{error}</p>
+          ) : (
+            <>
+              <h2 className="text-xl font-semibold mb-4">
+                Ventas Totales: {ventas.length}
+              </h2>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 overflow-hidden">
-              <thead className="bg-gray-50">
-                <tr>
-                  {["#", "Producto", "Precio", "Cantidad", "Opciones"].map((header) => (
-                    <th
-                      key={header}
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      {header}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200" style={{ width: "100%", tableLayout: "fixed" }}>
-                {ventas?.ventas_data.map((venta) => (
-                  <tr key={venta.id}>
-                    <td className="px-6 py-4 whitespace-nowrap">{venta.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{venta.nombre}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{venta.producto}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{venta.precio}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{venta.cantidad}</td>
-                    <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3 w-[220px]">
-                      <button
-                        className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
-                        onClick={() => console.log(`Edit sale ${venta.id}`)}
-                      >
-                        Edit
-                      </button>
-                      <img
-                        onClick={() => console.log("Print")}
-                        className="h-12 cursor-pointer"
-                        src={PrinterIcon}
-                        alt="Print Icon"
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200 overflow-hidden">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      {["#", "Producto", "Precio", "Cantidad", "Opciones"].map(
+                        (header) => (
+                          <th
+                            key={header}
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            {header}
+                          </th>
+                        )
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody
+                    className="bg-white divide-y divide-gray-200"
+                    style={{ width: "100%", tableLayout: "fixed" }}
+                  >
+                    {ventas.map((venta) => (
+                      <tr key={venta.id}>
+                        <td className="px-6 py-4 whitespace-nowrap">{venta.id}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {venta.nombre}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {venta.producto}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {venta.precio}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {venta.cantidad}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3 w-[220px]">
+                          <button
+                            onClick={() => console.log(`Edit ${venta.id}`)}
+                            className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
+                          >
+                            Edit  
+                          </button>
+                          <PrinterButton venta={venta} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
         </main>
       </div>
     </section>
