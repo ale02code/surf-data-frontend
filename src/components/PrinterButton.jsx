@@ -10,6 +10,8 @@ const PrinterButton = ({ venta = [] }) => {
     console.log(formattedDate);
   }, []);
 
+  const multi = venta.precio * venta.cantidad;
+
   const handlePrint = () => {
     if (venta) {
       const printWindow = window.open("", "", "height=600,width=800");
@@ -31,6 +33,7 @@ const PrinterButton = ({ venta = [] }) => {
       padding: 5px;
     }
   </style>
+  <title>Factura</title>
 </head>
 
 <body>
@@ -56,10 +59,10 @@ const PrinterButton = ({ venta = [] }) => {
       <td>${venta.id}</td>
       <td>${venta.cantidad}</td>
       <td>${venta.producto}</td>
-      <td>${venta.precio}</td>
+      <td>$ ${venta.precio}</td>
       <td></td>
       <td></td>
-      <td>${venta.precio * venta.cantidad}
+      <td>$ ${multi.toFixed(2)}
       </td>
     </tr>
   </table>
