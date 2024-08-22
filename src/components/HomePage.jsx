@@ -5,40 +5,23 @@ import SellForm from "./SellForm";
 import PrinterIcon from "../assets/icons/printer.png";
 
 function HomePage() {
-  // contexts
+  // Contexts
   const { sellFormOpen, setSellFormOpen } = useContext(SellFormContext);
 
-  // params
+  // Params
   const { empresa } = useParams();
-
-  // state
-  const [data, setData] = useState(null);
-  const [ventas, setVentas] = useState(null);
-  const [formData, setFormData] = useState({
-    nombre: "",
-    producto: "",
-    precio: "",
-    cantidad: 0,
-  });
-
   const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
 
-  const handleForm = () => {
+  // State
+  const [data, setData] = useState(null);
+  const [ventas, setVentas] = useState(null);
+
+  // Toggle the sell form
+  const handleFormToggle = () => {
     setSellFormOpen((prevState) => !prevState);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleEdit = () => {};
-
-  const handlePrint = () => {};
-
+  // Fetch dashboard data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,13 +31,14 @@ function HomePage() {
         const result = await response.json();
         setData(result);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching dashboard data:", error);
       }
     };
 
     fetchData();
   }, [normalizedEmpresa]);
 
+  // Fetch sales data
   useEffect(() => {
     const fetchVentas = async () => {
       try {
@@ -64,13 +48,14 @@ function HomePage() {
         const result = await response.json();
         setVentas(result);
       } catch (error) {
-        console.error("Error fetching ventas:", error);
+        console.error("Error fetching ventas data:", error);
       }
     };
 
     fetchVentas();
   }, [normalizedEmpresa]);
 
+  // Render component
   return (
     <section className="w-full overflow-x-hidden">
       {sellFormOpen && <SellForm />}
@@ -78,19 +63,16 @@ function HomePage() {
       <div className="mx-auto overflow-x-hidden">
         <header className="relative z-20 flex justify-center items-center pt-3 pb-2 mb-3 border-b border-gray-300 bg-[#212529] text-white">
           <nav className="flex justify-center items-center space-x-5">
-            <p className="text-xl font-semibold uppercase cursor-pointer">
-              Insertar
-            </p>
-            <p className="text-xl font-semibold uppercase cursor-pointer">
-              Status
-            </p>
+            <p className="text-xl font-semibold uppercase cursor-pointer">Insertar</p>
+            <p className="text-xl font-semibold uppercase cursor-pointer">Status</p>
           </nav>
         </header>
+
         <main className="w-[95%] mx-auto overflow-x-hidden">
           <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
             <h1 className="text-2xl font-bold">Dashboard {empresa}</h1>
             <button
-              onClick={handleForm}
+              onClick={handleFormToggle}
               className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 capitalize"
             >
               <svg
@@ -108,65 +90,45 @@ function HomePage() {
           <h2 className="text-xl font-semibold mb-4">
             Ventas Totales: {ventas ? ventas.ventas_data.length : 0}
           </h2>
+
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200 overflow-hidden">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    #
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Producto
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Precio
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Cantidad
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Opciones
-                  </th>
+                  {["#", "Producto", "Precio", "Cantidad", "Opciones"].map((header) => (
+                    <th
+                      key={header}
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      {header}
+                    </th>
+                  ))}
                 </tr>
               </thead>
-              <tbody
-                className="bg-white divide-y  divide-gray-200"
-                style={{ width: "100%", tableLayout: "fixed" }}
-              >
-                {ventas &&
-                  ventas.ventas_data.map((venta, index) => (
-                    <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {venta.id}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {venta.nombre}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {venta.producto}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {venta.precio}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {venta.cantidad}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3 w-[220px]">
-                        <button
-                          className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
-                          onClick={handleEdit}
-                        >
-                          Edit
-                        </button>
-                        <img
-                          onClick={handlePrint}
-                          className="h-12 hover:cursor-pointer"
-                          src={PrinterIcon}
-                          alt="img printer"
-                        />
-                      </td>
-                    </tr>
-                  ))}
+              <tbody className="bg-white divide-y divide-gray-200" style={{ width: "100%", tableLayout: "fixed" }}>
+                {ventas?.ventas_data.map((venta) => (
+                  <tr key={venta.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">{venta.id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{venta.nombre}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{venta.producto}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{venta.precio}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{venta.cantidad}</td>
+                    <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3 w-[220px]">
+                      <button
+                        className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
+                        onClick={() => console.log(`Edit sale ${venta.id}`)}
+                      >
+                        Edit
+                      </button>
+                      <img
+                        onClick={() => console.log("Print")}
+                        className="h-12 cursor-pointer"
+                        src={PrinterIcon}
+                        alt="Print Icon"
+                      />
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
