@@ -1,13 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { SellFormContext } from "../context/SellFormContext";
 import { SelectedDBContext } from "../context/SelectedDBContext";
 import { FormDataContext } from "../context/FormDataContext";
 
 function SellForm() {
-  // Contextos
+  const { empresa } = useParams();
   const { formData, setFormData } = useContext(FormDataContext);
   const { setSellFormOpen } = useContext(SellFormContext);
-  const { db } = useContext(SelectedDBContext);
+
+  const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
+
+  useEffect(() => {
+    console.log(empresa);
+  }, [empresa]);
 
   const handleSellForm = async (e) => {
     e.preventDefault();
@@ -15,7 +21,7 @@ function SellForm() {
 
     try {
       const response = await fetch(
-        `https://sales-manager-api.onrender.com/${db}/dashboard/ventas`, // Usa el valor de db en la URL
+        `https://sales-manager-api.onrender.com/${normalizedEmpresa}/dashboard/ventas`,
         {
           method: "POST",
           headers: {
@@ -30,9 +36,10 @@ function SellForm() {
         throw new Error(error.error || "Error desconocido");
       }
 
-      const result = await response.json();
+      await response.json();
       alert("Venta creada con éxito");
-      // Opcional: Limpia el formulario después de la venta exitosa
+
+      // Limpiar el formulario después de la venta exitosa
       setFormData({
         nombre: "",
         producto: "",
@@ -45,99 +52,97 @@ function SellForm() {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
   return (
-    <section className="w-screen h-screen fixed z-0 top-0 flex justify-center items-center">
+    <section className="w-screen h-screen fixed z-50 top-0 left-0 flex justify-center items-center">
       <div
-        className="h-screen w-screen bg-white-back"
+        className="absolute inset-0 bg-black bg-opacity-50"
         onClick={() => setSellFormOpen(false)}
       ></div>
-      <div className="w-[95%] max-w-[450px] text-white sm:w-90 absolute z-20">
+      <div className="relative z-20 w-[95%] max-w-md bg-[#212529] p-6 rounded-lg">
         <form
           onSubmit={handleSellForm}
-          className="bg-[#212529] p-4 rounded-lg flex justify-center flex-col sm:p-10"
+          className="flex flex-col gap-4 text-white"
         >
-          <h6 className="text-3xl uppercase font-bold mb-3 text-center">
-            Registro De Ventas
+          <h6 className="text-3xl uppercase font-bold text-center">
+            Registro de Ventas
           </h6>
-          <div className="flex flex-col justify-center gap-1">
-            <div>
-              <label htmlFor="nombre" className="text-lg">
-                Nombre
-              </label>
-              <input
-                type="text"
-                name="nombre"
-                pattern="^[^\d\s][^\d]*\s[^\d]+$"
-                title="El nombre no debe contener números, debe contener apellido, y no debe tener espacios al inicio."
-                placeholder="Christopher Chacón"
-                required
-                id="nombre"
-                className="w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg text-lg"
-                value={formData.nombre || ""}
-                onChange={(e) =>
-                  setFormData({ ...formData, nombre: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <label htmlFor="producto" className="text-lg">
-                Producto
-              </label>
-              <input
-                type="text"
-                name="producto"
-                placeholder="Producto..."
-                required
-                id="producto"
-                className="w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg text-lg"
-                value={formData.producto || ""}
-                onChange={(e) =>
-                  setFormData({ ...formData, producto: e.target.value })
-                }
-              />
-            </div>
-            <div className="flex w-full gap-[3%]">
-              <div className="w-full flex flex-col">
-                <label htmlFor="precio" className="text-lg">
-                  Precio
-                </label>
-                <input
-                  type="text"
-                  name="precio"
-                  placeholder="$ 0.00"
-                  id="precio"
-                  className="w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg text-lg"
-                  value={formData.precio || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, precio: e.target.value })
-                  }
-                />
-              </div>
-              <div className="w-full flex flex-col">
-                <label htmlFor="cantidad" className="text-lg">
-                  Cantidad
-                </label>
-                <input
-                  type="number"
-                  name="cantidad"
-                  placeholder="4"
-                  max={5}
-                  min={1}
-                  title="Cantidad debe estar entre 1 a 5"
-                  required
-                  id="cantidad"
-                  className="w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg mb-6 text-lg"
-                  value={formData.cantidad || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, cantidad: e.target.value })
-                  }
-                />
-              </div>
-            </div>
-            <button className="bg-indigo-500 p-4 rounded-lg uppercase w-full text-xl">
-              Generar Venta
-            </button>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="nombre" className="text-lg">
+              Nombre
+            </label>
+            <input
+              type="text"
+              name="nombre"
+              id="nombre"
+              placeholder="Christopher Chacón"
+              required
+              pattern="^[^\d\s][^\d]*\s[^\d]+$"
+              title="El nombre no debe contener números, debe contener apellido, y no debe tener espacios al inicio."
+              className="w-full p-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-900"
+              value={formData.nombre || ""}
+              onChange={handleInputChange}
+            />
           </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="producto" className="text-lg">
+              Producto
+            </label>
+            <input
+              type="text"
+              name="producto"
+              id="producto"
+              placeholder="Producto..."
+              required
+              className="w-full p-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-900"
+              value={formData.producto || ""}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="flex gap-3">
+            <div className="flex flex-col w-full">
+              <label htmlFor="precio" className="text-lg">
+                Precio
+              </label>
+              <input
+                type="text"
+                name="precio"
+                id="precio"
+                placeholder="$ 0.00"
+                className="w-full p-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-900"
+                value={formData.precio || ""}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex flex-col w-full">
+              <label htmlFor="cantidad" className="text-lg">
+                Cantidad
+              </label>
+              <input
+                type="number"
+                name="cantidad"
+                id="cantidad"
+                placeholder="4"
+                min="1"
+                max="5"
+                required
+                title="Cantidad debe estar entre 1 y 5"
+                className="w-full p-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-900"
+                value={formData.cantidad || ""}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="bg-indigo-500 text-white p-4 rounded-lg uppercase text-xl"
+          >
+            Generar Venta
+          </button>
         </form>
       </div>
     </section>
