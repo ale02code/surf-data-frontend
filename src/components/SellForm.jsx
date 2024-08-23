@@ -41,7 +41,6 @@ function SellForm() {
 
       // Limpiar el formulario después de la venta exitosa
       setFormData({
-        nombre: "",
         producto: "",
         precio: "",
         cantidad: "",
@@ -71,23 +70,6 @@ function SellForm() {
           <h6 className="text-3xl uppercase font-bold text-center">
             Registro de Ventas
           </h6>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="nombre" className="text-lg">
-              Nombre
-            </label>
-            <input
-              type="text"
-              name="nombre"
-              id="nombre"
-              placeholder="Christopher Chacón"
-              required
-              pattern="^[^\d\s][^\d]*\s[^\d]+$"
-              title="El nombre no debe contener números, debe contener apellido, y no debe tener espacios al inicio."
-              className="w-full p-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-900"
-              value={formData.nombre || ""}
-              onChange={handleInputChange}
-            />
-          </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="producto" className="text-lg">
               Producto
