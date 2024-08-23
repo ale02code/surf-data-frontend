@@ -135,11 +135,10 @@ function HomePage() {
                     className="bg-white divide-y divide-gray-200"
                     style={{ width: "100%", tableLayout: "fixed" }}
                   >
-                    {ventas.map((venta) => (
+                    {ventas.map((venta, index) => (
                       <tr key={venta.id}>
-                        <td className="px-6 py-4 whitespace-nowrap">{venta.id}</td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {venta.nombre}
+                          {index + 1}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {venta.producto}
@@ -155,7 +154,7 @@ function HomePage() {
                             onClick={() => console.log(`Edit ${venta.id}`)}
                             className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
                           >
-                            Edit  
+                            Edit
                           </button>
                           <PrinterButton venta={venta} />
                         </td>
