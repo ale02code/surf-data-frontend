@@ -119,7 +119,7 @@ function HomePage() {
                 <table className="min-w-full divide-y divide-gray-200 overflow-hidden">
                   <thead className="bg-gray-50">
                     <tr>
-                      {["#", "Producto", "Precio", "Cantidad", "Opciones"].map(
+                      {["#", "Producto", "Precio Unitario", "Cantidad", "Opciones"].map(
                         (header) => (
                           <th
                             key={header}
