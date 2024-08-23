@@ -41,6 +41,7 @@ function SellForm() {
 
       // Limpiar el formulario después de la venta exitosa
       setFormData({
+        nombre: "Consumirdor Final",
         producto: "",
         precio: "",
         cantidad: "",
