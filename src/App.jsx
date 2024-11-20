@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import HomePage from "./components/HomePage";
 import { SellFormContextProvider } from "./context/SellFormContext";
 import { SelectedDBContextProvider } from "./context/SelectedDBContext";
 import { FormDataContextProvider } from "./context/FormDataContext";
+import AppRoutes from "./routes/AppRoutes";
+
+import "./index.css"
 
 function App() {
   return (
@@ -11,12 +11,7 @@ function App() {
       <SellFormContextProvider>
         <SelectedDBContextProvider>
           <FormDataContextProvider>
-            <Router>
-              <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/:empresa/dashboard" element={<HomePage />} />
-              </Routes>
-            </Router>
+            <AppRoutes />
           </FormDataContextProvider>
         </SelectedDBContextProvider>
       </SellFormContextProvider>

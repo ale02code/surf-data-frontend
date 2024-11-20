@@ -9,11 +9,11 @@ function SellForm() {
   const { formData, setFormData } = useContext(FormDataContext);
   const { setSellFormOpen } = useContext(SellFormContext);
 
-  const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
+  const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "");
 
   useEffect(() => {
     console.log(empresa);
-  }, [empresa]);
+  }, []);
 
   const handleSellForm = async (e) => {
     e.preventDefault();
@@ -30,11 +30,6 @@ function SellForm() {
           body: JSON.stringify(formData),
         }
       );
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || "Error desconocido");
-      }
 
       await response.json();
       alert("Venta creada con éxito");

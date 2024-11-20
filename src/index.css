@@ -13,3 +13,7 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #212529;
 }
+
+#title {
+  text-shadow: 4px 3px rgb(105, 179, 248);
+}

@@ -14,6 +14,10 @@ export default {
         'white-back': '#ffffffb2'
       },
 
+      fontFamily: {
+        'agrandir': 'Agrandir',
+      },
+
       width: {
         '90': '90%',
       },
