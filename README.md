@@ -55,11 +55,11 @@ Sigue estos pasos para ejecutar la aplicación localmente:
    Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
    ```env
-   REACT_APP_API_URL=https://tu-api.com
+   REACT_APP_API_URL=https://sales-manager-api.onrender.com
    ```
 
-2. **Backend**:
-   Asegúrate de tener el backend (Flask) configurado y en ejecución. Revisa la documentación en el archivo `docs/backend.md`.
+<!-- 2. **Backend**:
+   Asegúrate de tener el backend (Flask) configurado y en ejecución. Revisa la documentación en el archivo `docs/backend.md`. -->
 
 ## 🧩 **Tecnologías Utilizadas**
 
@@ -85,4 +85,4 @@ Este proyecto está licenciado bajo la [MIT License](./LICENSE).
 ¿Tienes preguntas o sugerencias? ¡Contáctame!
 
 - **GitHub**: [ale02code](https://github.com/ale02code)
-- **Correo Electrónico**: [christopherchacon@example.com](mailto:christopherchacon@example.com)
+- **Correo Electrónico**: [chchacon02@gmail.com](mailto:chchacon02@gmail.com)
