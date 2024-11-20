@@ -53,10 +53,10 @@ function HomePage() {
 
         <footer></footer>
       </section>
-      <div className="ocean">
+      {/* <div className="ocean">
         <div className="wave"></div>
         <div className="wave wave2"></div>
-      </div>
+      </div> */}
       <footer></footer>
     </>
   );

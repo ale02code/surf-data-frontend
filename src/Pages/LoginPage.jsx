@@ -14,7 +14,9 @@ function LoginPage() {
   useEffect(() => {
     const fetchingData = async () => {
       try {
-        const response = await fetch("https://sales-manager-api.onrender.com/");
+        const response = await fetch(
+          "https://sales-manager-api.onrender.com/login"
+        );
         const responseJSON = await response.json();
         setLoginData(responseJSON);
       } catch (e) {
