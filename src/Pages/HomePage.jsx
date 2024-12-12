@@ -1,6 +1,9 @@
 import OceanImg from "../assets/imgs/ocean.jpg";
 import WaveImg from "../assets/imgs/wave.svg";
 import MacImg from "../assets/imgs/Mac-Screen.png";
+import InstagramIcon from "../assets/icons/instagram.svg";
+import WhatsappIcon from "../assets/icons/whatsapp.svg";
+import GithubIcon from "../assets/icons/github.svg";
 
 function HomePage() {
   return (
@@ -72,12 +75,16 @@ function HomePage() {
           alt="Wave"
         />
         <section className="h-full w-full bg-sky-950 pb-4 text-white">
-          <div className="flex justify-center items-center w-[80%] h-full m-auto overflow-hidden">
+          <div className="flex justify-center items-start w-[80%] gap-8 h-80 m-auto overflow-hidden">
             <div className="h-max w-1/2 flex justify-center items-center">
-              <img className="h-max w-max object-cover" src={MacImg} alt="Mac Picture" />
+              <img
+                className="h-max w-max object-cover"
+                src={MacImg}
+                alt="Mac Picture"
+              />
             </div>
-            <div className="w-1/2 flex flex-col justify-center items-start h-full">
-              <form className="flex w-full border-2 border-white rounded-xl overflow-hidden text-lg">
+            <div className="w-1/2 flex flex-col justify-evenly gap-6 h-full">
+              <form className="flex w-full border-2 border-white rounded-3xl overflow-hidden text-lg">
                 <input
                   type="email"
                   className="w-3/4 p-2 outline-none text-black"
@@ -88,29 +95,71 @@ function HomePage() {
                   className="w-1/4 bg-[#69b3f8] p-2 cursor-pointer font-bold text-sky-950"
                 />
               </form>
-              <div className="w-full flex justify-evenly">
+              <div className="w-full flex justify-around items-start">
                 <div>
-                  <h6 className="mb-2 font-bold text-lg">Partnership</h6>
+                  <h6 className="mb-2 font-bold text-2xl">Partnership</h6>
                   <p>Websites</p>
                   <p>Social Media</p>
                   <p>Branding</p>
                 </div>
                 <div>
-                  <h6 className="mb-2 font-bold text-lg">About</h6>
+                  <h6 className="mb-2 font-bold text-2xl">About</h6>
                   <p>Our projects</p>
                   <p>Careers</p>
                 </div>
                 <div>
-                  <h6 className="mb-2 font-bold text-lg">Support</h6>
+                  <h6 className="mb-2 font-bold text-2xl">Support</h6>
                   <p>Support request</p>
                   <p>Contact</p>
                 </div>
               </div>
-              <span className="w-full h-1 border-b border-neutral-300" />
-              <div className="w-full flex justify-between items-center text-lg">
-                <p>All rights reserved 2024</p>
-                <div>
-                  <p>Social Networks</p>
+              <div className="w-full flex flex-col justify-between items-center text-lg">
+                <span className="w-full h-1 border-b border-neutral-300 mb-2" />
+                <div className="h-8 w-full flex justify-between">
+                  <p className="font-bold text-white">
+                    All rights reserved 2024
+                  </p>
+                  <div className="flex space-x-2 h-full">
+                    <div className="h-7 cursor-pointer overflow-hidden">
+                      <a
+                        href={"https://www.instagram.com/ale02.code/"}
+                        target="_BLANK"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="h-full"
+                          src={InstagramIcon}
+                          alt="Social Icon"
+                        />
+                      </a>
+                    </div>
+                    <div className="h-7 cursor-pointer overflow-hidden">
+                      <a
+                        href={"https://wa.me/72878361"}
+                        target="_BLANK"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="h-full"
+                          src={WhatsappIcon}
+                          alt="Social Icon"
+                        />
+                      </a>
+                    </div>
+                    <div className="h-7 cursor-pointer overflow-hidden">
+                      <a
+                        href={"https://github.com/ale02code"}
+                        target="_BLANK"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="h-full"
+                          src={GithubIcon}
+                          alt="Social Icon"
+                        />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
