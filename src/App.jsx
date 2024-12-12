@@ -3,7 +3,7 @@ import { SelectedDBContextProvider } from "./context/SelectedDBContext";
 import { FormDataContextProvider } from "./context/FormDataContext";
 import AppRoutes from "./routes/AppRoutes";
 
-import "./index.css"
+import "./index.css";
 
 function App() {
   return (
