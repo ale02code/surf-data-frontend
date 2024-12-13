@@ -1,9 +1,20 @@
 import OceanImg from "../assets/imgs/ocean.jpg";
 import WaveImg from "../assets/imgs/wave.svg";
 import MacImg from "../assets/imgs/Mac-Screen.png";
+import SurfImg from "../assets/imgs/surf.jpg";
+import WaveBorderImg from "../assets/imgs/waveBorder.png";
+import AutoIcon from "../assets/icons/auto.svg";
+import DataIcon from "../assets/icons/data.svg";
+import SecurityIcon from "../assets/icons/security.svg";
+import OracleImg from "../assets/imgs/oracle.png";
+import HubspotImg from "../assets/imgs/hubspot.png";
+import GoogleAnalyticsImg from "../assets/imgs/google-analytics.png";
+import IBMImg from "../assets/imgs/ibm.png";
+import BillIcon from "../assets/icons/bill.svg";
 import InstagramIcon from "../assets/icons/instagram.svg";
 import WhatsappIcon from "../assets/icons/whatsapp.svg";
 import GithubIcon from "../assets/icons/github.svg";
+import BenefitCard from "../components/BenefitCard";
 
 function HomePage() {
   return (
@@ -49,7 +60,7 @@ function HomePage() {
             Surf Data
           </h1>
           <h2
-            className="font-black text-2xl uppercase text-white shadow-custom backdrop-blur-sm border-2 border-white rounded-lg p-2 max-sm:max-w-[90%] max-sm:m-auto"
+            className="font-black text-2xl uppercase text-white shadow-custom backdrop-blur-sm border-2 border-white rounded-lg p-2 max-sm:max-w-[90%] max-sm:m-auto relative"
             draggable="false"
           >
             “Código y acción, tu éxito en cada inversión“
@@ -57,115 +68,178 @@ function HomePage() {
         </hgroup>
       </section>
 
-      {/* Information Section */}
-      {/* Yellow: #FFFFAA Gray: #bg-gray-800 */}
-      <section className="bg-gray-800 h-screen w-screen z-50 relative">
-        <p className="text-9xl">overflow-x-hidden</p>
-      </section>
-      {/* Services Section */}
-      <section className="bg-white h-screen w-screen z-50 relative">
-        <p className="text-9xl">overflow-x-hidden</p>
-      </section>
-
-      {/* Footer Page */}
-      <footer className="w-screen h-auto absolute bottom-0 overflow-hidden z-50">
-        <img
-          className="overflow-hidden h-max w-full object-cover"
-          src={WaveImg}
-          alt="Wave"
-        />
-        <section className="h-full w-full bg-sky-950 pb-4 text-white">
-          <div className="flex justify-center items-start w-[80%] gap-8 h-80 m-auto overflow-hidden">
-            <div className="h-max w-1/2 flex justify-center items-center">
-              <img
-                className="h-max w-max object-cover"
-                src={MacImg}
-                alt="Mac Picture"
+      {/* Benefits Section */}
+      <section className="bg-white h-max w-screen z-50 relative">
+        <div className="h-full w-full">
+          <div className="h-16 shadow-md flex justify-between items-center">
+            <div className="flex justify-between items-center w-4/5 m-auto">
+              <h5 className="font-agrandir uppercase font-bold text-xl">
+                Empresas colaboradoras y partners
+              </h5>
+              <div className="h-full flex justify-center items-center gap-2 overflow-hidden">
+                <img className="h-20" src={OracleImg} alt="Oracle" />
+                <img
+                  className="h-10"
+                  src={GoogleAnalyticsImg}
+                  alt="GoogleAnalytics"
+                />
+                <img className="h-10" src={HubspotImg} alt="Hubspot" />
+                <img className="h-20" src={IBMImg} alt="IBM" />
+              </div>
+            </div>
+          </div>
+          <div className="w-4/5 h-full m-auto">
+            <h4 className="text-center text-gray-800 text-3xl text-balance font-black uppercase mb-16 mt-24">
+              Principales beneficios de la integración de <br /> nuestro
+              servicio
+            </h4>
+            <div className="flex justify-around flex-wrap mb-20">
+              <BenefitCard
+                img={AutoIcon}
+                title={"Automatización"}
+                text={"Automatización en tu negocio"}
+              />
+              <BenefitCard
+                img={DataIcon}
+                title={"Analisis de Datos"}
+                text={"Analisis de tus ventas"}
+              />
+              <BenefitCard
+                img={SecurityIcon}
+                title={"Seguridad"}
+                text={"Seguridad y respaldo de datos"}
+              />
+              <BenefitCard
+                img={BillIcon}
+                title={"Facturación"}
+                text={"Factura incluida en ventas"}
               />
             </div>
-            <div className="w-1/2 flex flex-col justify-evenly gap-6 h-full">
-              <form className="flex w-full border-2 border-white rounded-3xl overflow-hidden text-lg">
-                <input
-                  type="email"
-                  className="w-3/4 p-2 outline-none text-black"
-                  placeholder="Your e-mail"
+          </div>
+        </div>
+      </section>
+
+      {/* Information Section */}
+      <section className="bg-white h-max w-screen">
+        <div>
+          <img className="rotate-180" src={WaveBorderImg} alt="Wave Border" />
+        </div>
+        <section className="h-60 bg-gray-800">
+          <div className="w-4/5 text-white m-auto">
+            <h3 className="text-3xl font-bold font-agrandir">
+              Nice to Meet You{" "}
+            </h3>
+          </div>
+        </section>
+        <div>
+          <img src={WaveBorderImg} alt="Wave Border" />
+        </div>
+      </section>
+
+      {/* Plans Section */}
+      <section className="bg-white h-screen w-screen z-50 relative"></section>
+
+      {/* Footer Page */}
+      <div className="min-h-screen relative">
+        <footer className="w-screen h-max absolute bottom-0 overflow-hidden z-50">
+          <img
+            className="overflow-hidden h-max w-full object-cover"
+            src={WaveImg}
+            alt="Wave"
+          />
+          <section className="h-64 w-full bg-sky-950 pb-4 text-white">
+            <div className="h-full flex justify-center items-start w-4/5 gap-8 m-auto overflow-hidden">
+              <div className="h-full w-1/2 flex justify-center items-center">
+                <img
+                  className="h-full w-max object-contain"
+                  src={MacImg}
+                  alt="Mac Picture"
                 />
-                <input
-                  type="submit"
-                  className="w-1/4 bg-[#69b3f8] p-2 cursor-pointer font-bold text-sky-950"
-                />
-              </form>
-              <div className="w-full flex justify-around items-start">
-                <div>
-                  <h6 className="mb-2 font-bold text-2xl">Partnership</h6>
-                  <p>Websites</p>
-                  <p>Social Media</p>
-                  <p>Branding</p>
-                </div>
-                <div>
-                  <h6 className="mb-2 font-bold text-2xl">About</h6>
-                  <p>Our projects</p>
-                  <p>Careers</p>
-                </div>
-                <div>
-                  <h6 className="mb-2 font-bold text-2xl">Support</h6>
-                  <p>Support request</p>
-                  <p>Contact</p>
-                </div>
               </div>
-              <div className="w-full flex flex-col justify-between items-center text-lg">
-                <span className="w-full h-1 border-b border-neutral-300 mb-2" />
-                <div className="h-8 w-full flex justify-between">
-                  <p className="font-bold text-white">
-                    All rights reserved 2024
-                  </p>
-                  <div className="flex space-x-2 h-full">
-                    <div className="h-7 cursor-pointer overflow-hidden">
-                      <a
-                        href={"https://www.instagram.com/ale02.code/"}
-                        target="_BLANK"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className="h-full"
-                          src={InstagramIcon}
-                          alt="Social Icon"
-                        />
-                      </a>
-                    </div>
-                    <div className="h-7 cursor-pointer overflow-hidden">
-                      <a
-                        href={"https://wa.me/72878361"}
-                        target="_BLANK"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className="h-full"
-                          src={WhatsappIcon}
-                          alt="Social Icon"
-                        />
-                      </a>
-                    </div>
-                    <div className="h-7 cursor-pointer overflow-hidden">
-                      <a
-                        href={"https://github.com/ale02code"}
-                        target="_BLANK"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className="h-full"
-                          src={GithubIcon}
-                          alt="Social Icon"
-                        />
-                      </a>
+              <div className="w-1/2 flex flex-col justify-evenly gap-6 h-full">
+                <form className="flex w-full border-2 border-white rounded-3xl overflow-hidden text-lg">
+                  <input
+                    type="email"
+                    className="w-3/4 p-2 outline-none text-black"
+                    placeholder="Your e-mail"
+                  />
+                  <input
+                    type="submit"
+                    className="w-1/4 bg-[#69b3f8]  cursor-pointer font-bold text-sky-950"
+                  />
+                </form>
+                <div className="w-full flex justify-around items-start">
+                  <div>
+                    <h6 className="mb-2 font-bold text-2xl">Partnership</h6>
+                    <p>Websites</p>
+                    <p>Social Media</p>
+                    <p>Branding</p>
+                  </div>
+                  <div>
+                    <h6 className="mb-2 font-bold text-2xl">About</h6>
+                    <p>Our projects</p>
+                    <p>Careers</p>
+                  </div>
+                  <div>
+                    <h6 className="mb-2 font-bold text-2xl">Support</h6>
+                    <p>Support request</p>
+                    <p>Contact</p>
+                  </div>
+                </div>
+                <div className="w-full flex flex-col justify-between items-center text-lg">
+                  <span className="w-full h-1 border-b border-neutral-300 mb-2" />
+                  <div className="h-8 w-full flex justify-between">
+                    <p className="font-bold text-white">
+                      All rights reserved 2024
+                    </p>
+                    <div className="flex space-x-2 h-full">
+                      <div className="h-7 cursor-pointer overflow-hidden">
+                        <a
+                          href={"https://www.instagram.com/ale02.code/"}
+                          target="_BLANK"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            className="h-full"
+                            src={InstagramIcon}
+                            alt="Social Icon"
+                          />
+                        </a>
+                      </div>
+                      <div className="h-7 cursor-pointer overflow-hidden">
+                        <a
+                          href={"https://wa.me/+50372878361"}
+                          target="_BLANK"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            className="h-full"
+                            src={WhatsappIcon}
+                            alt="Social Icon"
+                          />
+                        </a>
+                      </div>
+                      <div className="h-7 cursor-pointer overflow-hidden">
+                        <a
+                          href={"https://github.com/ale02code"}
+                          target="_BLANK"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            className="h-full"
+                            src={GithubIcon}
+                            alt="Social Icon"
+                          />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </footer>
+          </section>
+        </footer>
+      </div>
     </div>
   );
 }
