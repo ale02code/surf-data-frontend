@@ -1,7 +1,6 @@
 import OceanImg from "../assets/imgs/ocean.jpg";
 import WaveImg from "../assets/imgs/wave.svg";
 import MacImg from "../assets/imgs/Mac-Screen.png";
-import SurfImg from "../assets/imgs/surf.jpg";
 import WaveBorderImg from "../assets/imgs/waveBorder.png";
 import AutoIcon from "../assets/icons/auto.svg";
 import DataIcon from "../assets/icons/data.svg";
@@ -11,6 +10,7 @@ import HubspotImg from "../assets/imgs/hubspot.png";
 import GoogleAnalyticsImg from "../assets/imgs/google-analytics.png";
 import IBMImg from "../assets/imgs/ibm.png";
 import BillIcon from "../assets/icons/bill.svg";
+import OctopusImg from "../assets/icons/octopus.png";
 import InstagramIcon from "../assets/icons/instagram.svg";
 import WhatsappIcon from "../assets/icons/whatsapp.svg";
 import GithubIcon from "../assets/icons/github.svg";
@@ -93,7 +93,7 @@ function HomePage() {
               Principales beneficios de la integración de <br /> nuestro
               servicio
             </h4>
-            <div className="flex justify-around flex-wrap mb-20">
+            <div className="flex justify-around flex-wrap gap-y-8 mb-20">
               <BenefitCard
                 img={AutoIcon}
                 title={"Automatización"}
@@ -124,11 +124,27 @@ function HomePage() {
         <div>
           <img className="rotate-180" src={WaveBorderImg} alt="Wave Border" />
         </div>
-        <section className="h-60 bg-gray-800">
-          <div className="w-4/5 text-white m-auto">
-            <h3 className="text-3xl font-bold font-agrandir">
-              Nice to Meet You{" "}
-            </h3>
+        <section className="h-max bg-gray-800 flex justify-center items-center">
+          <div className="w-4/5 text-white m-auto overflow-hidden flex justify-evenly items-center flex-wrap">
+            <article className="w-3/6">
+              <h3 className="text-3xl font-bold font-agrandir capitalize">
+                Nice to Meet You!
+              </h3>
+              <p className="text-lg text-neutral-100 text-pretty">
+                Impulsar nuestros servicios digitales a un ámbito contable,
+                ofreciendo calidad de soluciones para mejorar la eficiencia
+                operativa y la toma de decisiones estratégicas de nuestros
+                clientes, permitiéndoles alcanzar un nuevo nivel de excelencia y
+                competitividad.
+              </p>
+            </article>
+            <div className="overflow-hidden h-60">
+              <img
+                className="h-full min-w-max"
+                src={OctopusImg}
+                alt="Octopus Image"
+              />
+            </div>
           </div>
         </section>
         <div>
@@ -137,7 +153,14 @@ function HomePage() {
       </section>
 
       {/* Plans Section */}
-      <section className="bg-white h-screen w-screen z-50 relative"></section>
+      <section className="bg-white w-screen z-50 relative h-max">
+        <div className="w-4/5 h-screen flex justify-center items-center m-auto">
+          <h4 className="text-center text-gray-800 text-3xl text-balance font-black uppercase mb-16 mt-24">
+            Descubra nuestros planes personalizados, diseñados para su empresa
+          </h4>
+          
+        </div>
+      </section>
 
       {/* Footer Page */}
       <div className="min-h-screen relative">
