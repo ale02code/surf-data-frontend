@@ -11,10 +11,15 @@ import GoogleAnalyticsImg from "../assets/imgs/google-analytics.png";
 import IBMImg from "../assets/imgs/ibm.png";
 import BillIcon from "../assets/icons/bill.svg";
 import OctopusImg from "../assets/icons/octopus.png";
+import TurtleImg from "../assets/icons/turtle.png";
+import FishImg from "../assets/icons/fish.png";
+import AnchorImg from "../assets/icons/anchor-dorado.png";
 import InstagramIcon from "../assets/icons/instagram.svg";
 import WhatsappIcon from "../assets/icons/whatsapp.svg";
 import GithubIcon from "../assets/icons/github.svg";
 import BenefitCard from "../components/BenefitCard";
+
+import Title from "../components/Title";
 
 function HomePage() {
   return (
@@ -29,7 +34,7 @@ function HomePage() {
         />
 
         <header className="h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black">
-          <div className="flex justify-between items-center w-[90%] h-full m-auto">
+          <div className="flex justify-between items-center w-4/5 h-full m-auto">
             <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir">
               <div className="flex justify-center items-center space-x-6">
                 <p className="hover:cursor-pointer hover:underline">Inicio</p>
@@ -70,7 +75,7 @@ function HomePage() {
 
       {/* Benefits Section */}
       <section className="bg-white h-max w-screen z-50 relative">
-        <div className="h-full w-full">
+        <div className="h-full w-full mb-32">
           <div className="h-16 shadow-md flex justify-between items-center">
             <div className="flex justify-between items-center w-4/5 m-auto">
               <h5 className="font-agrandir uppercase font-bold text-xl">
@@ -89,10 +94,11 @@ function HomePage() {
             </div>
           </div>
           <div className="w-4/5 h-full m-auto">
-            <h4 className="text-center text-gray-800 text-3xl text-balance font-black uppercase mb-16 mt-24">
-              Principales beneficios de la integración de <br /> nuestro
-              servicio
-            </h4>
+            <Title
+              text={`Principales beneficios de la integración de nuestro
+              servicio`}
+              color="text-gray-800"
+            />
             <div className="flex justify-around flex-wrap gap-y-8 mb-20">
               <BenefitCard
                 img={AutoIcon}
@@ -154,11 +160,33 @@ function HomePage() {
 
       {/* Plans Section */}
       <section className="bg-white w-screen z-50 relative h-max">
-        <div className="w-4/5 h-screen flex justify-center items-center m-auto">
-          <h4 className="text-center text-gray-800 text-3xl text-balance font-black uppercase mb-16 mt-24">
-            Descubra nuestros planes personalizados, diseñados para su empresa
-          </h4>
-          
+        <div className="w-4/5 h-screen flex flex-col justify-center items-center m-auto">
+          <div className="block">
+            <Title
+              text="Descubra nuestros planes personalizados, diseñados para su empresa"
+              color="text-gray-800"
+            />
+          </div>
+          <div className="flex space-x-5">
+            <div className="h-80 w-56 p-2 bg-slate-500 rounded-lg">
+              <div></div>
+              <div>
+                <img src={FishImg} alt="Icon Image" />
+              </div>
+            </div>
+            <div className="h-80 w-56 p-2 bg-slate-500 rounded-lg">
+              <div></div>
+              <div>
+                <img src={AnchorImg} alt="Icon Image" />
+              </div>
+            </div>
+            <div className="h-80 w-56 p-2 bg-slate-500 rounded-lg">
+              <div></div>
+              <div>
+                <img src={TurtleImg} alt="Icon Image" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
