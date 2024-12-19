@@ -1,7 +1,8 @@
 import OceanImg from "../assets/imgs/ocean.jpg";
-import WaveImg from "../assets/imgs/wave.svg";
+import WaveImg from "../assets/imgs/wave.png";
 import MacImg from "../assets/imgs/Mac-Screen.png";
 import WaveBorderImg from "../assets/imgs/waveBorder.png";
+import WaveBorderImg2 from "../assets/imgs/waveBorder2.png";
 import AutoIcon from "../assets/icons/auto.svg";
 import DataIcon from "../assets/icons/data.svg";
 import SecurityIcon from "../assets/icons/security.svg";
@@ -128,10 +129,8 @@ function HomePage() {
 
       {/* Information Section */}
       <section className="bg-white h-max w-screen">
-        <div>
-          <img className="rotate-180" src={WaveBorderImg} alt="Wave Border" />
-        </div>
-        <section className="h-max bg-gray-800 flex justify-center items-center">
+        <img src={WaveBorderImg2} alt="Wave Border" />
+        <section className="h-72 bg-gray-800 flex justify-center items-center">
           <div className="w-4/5 text-white m-auto overflow-hidden flex justify-evenly items-center flex-wrap">
             <article className="w-3/6">
               <h3 className="text-3xl font-bold font-agrandir capitalize">
@@ -154,9 +153,7 @@ function HomePage() {
             </div>
           </div>
         </section>
-        <div>
-          <img src={WaveBorderImg} alt="Wave Border" />
-        </div>
+        <img src={WaveBorderImg} alt="Wave Border" />
       </section>
 
       {/* Plans Section */}
@@ -166,7 +163,7 @@ function HomePage() {
             text="Descubra nuestros planes personalizados, diseñados para su empresa"
             color="text-gray-800"
           />
-          <div className="flex gap-8 flex-wrap mb-5">
+          <div className="flex gap-8 flex-wrap justify-center mb-2">
             <ServiceCard
               color="sky"
               img={FishImg}
@@ -211,8 +208,8 @@ function HomePage() {
       </section>
 
       {/* Footer Page */}
-      <div className="h-screen relative mt-12">
-        <footer className="w-screen h-max absolute bottom-0 overflow-hidden z-50">
+      <div className="h-max relative mt-12">
+        <footer className="w-screen h-max overflow-hidden z-50">
           <img
             className="overflow-hidden h-max w-full object-cover"
             src={WaveImg}
