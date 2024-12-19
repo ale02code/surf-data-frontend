@@ -17,15 +17,3 @@ body::-webkit-scrollbar-thumb {
 #title {
   text-shadow: 4px 3px rgb(105, 179, 248);
 }
-
-.poligon {
-  clip-path: polygon(
-    100% 0,
-    100% 0,
-    100% 48%,
-    100% 100%,
-    33% 100%,
-    0 50%,
-    33% 0
-  );
-}

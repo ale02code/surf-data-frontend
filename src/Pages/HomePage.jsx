@@ -20,6 +20,7 @@ import GithubIcon from "../assets/icons/github.svg";
 import BenefitCard from "../components/BenefitCard";
 
 import Title from "../components/Title";
+import ServiceCard from "../components/ServiceCard";
 
 function HomePage() {
   return (
@@ -159,39 +160,58 @@ function HomePage() {
       </section>
 
       {/* Plans Section */}
-      <section className="bg-white w-screen z-50 relative h-max">
-        <div className="w-4/5 h-screen flex flex-col justify-center items-center m-auto">
-          <div className="block">
-            <Title
-              text="Descubra nuestros planes personalizados, diseñados para su empresa"
-              color="text-gray-800"
+      <section className="bg-white w-screen z-50 relative h-max overflow-hidden">
+        <div className="w-4/5 h-max flex flex-col justify-center items-center m-auto">
+          <Title
+            text="Descubra nuestros planes personalizados, diseñados para su empresa"
+            color="text-gray-800"
+          />
+          <div className="flex gap-8 flex-wrap mb-5">
+            <ServiceCard
+              color="sky"
+              img={FishImg}
+              title="Fish"
+              desc="Paquete perfecto para proyectos personales."
+              advantages={[
+                "Diseñado para proyecto pequeños",
+                "Acceso a reportes básicos.",
+                "Interfaz fácil de usar.",
+                "Actualizaciones periódicas garantizadas.",
+              ]}
+              price="3,99"
             />
-          </div>
-          <div className="flex space-x-5">
-            <div className="h-80 w-56 p-2 bg-slate-500 rounded-lg">
-              <div></div>
-              <div>
-                <img src={FishImg} alt="Icon Image" />
-              </div>
-            </div>
-            <div className="h-80 w-56 p-2 bg-slate-500 rounded-lg">
-              <div></div>
-              <div>
-                <img src={AnchorImg} alt="Icon Image" />
-              </div>
-            </div>
-            <div className="h-80 w-56 p-2 bg-slate-500 rounded-lg">
-              <div></div>
-              <div>
-                <img src={TurtleImg} alt="Icon Image" />
-              </div>
-            </div>
+            <ServiceCard
+              color="yellow"
+              img={AnchorImg}
+              title="Anchor"
+              desc="Disfruta de un rendimiento optimizado y recursos potentes."
+              advantages={[
+                "Optimizado para empresas en crecimiento.",
+                "Reportes avanzados de ventas.",
+                "Mayor capacidad de almacenamiento.",
+                "Soporte dedicado y rápido.",
+              ]}
+              price="8,99"
+            />
+            <ServiceCard
+              color="green"
+              img={TurtleImg}
+              title="Turtle"
+              desc="Sube de nivel con más potencia y funciones mejoradas."
+              advantages={[
+                "Funcionalidades completas para corporaciones.",
+                "Integración con herramientas externas.",
+                "Análisis predictivo con inteligencia artificial.",
+                "Soporte premium disponible 24/7.",
+              ]}
+              price="6,99"
+            />
           </div>
         </div>
       </section>
 
       {/* Footer Page */}
-      <div className="min-h-screen relative">
+      <div className="h-screen relative mt-12">
         <footer className="w-screen h-max absolute bottom-0 overflow-hidden z-50">
           <img
             className="overflow-hidden h-max w-full object-cover"
