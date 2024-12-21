@@ -88,7 +88,7 @@ function HomePage() {
           }
         >
           <div className="flex justify-between items-center w-4/5 h-full m-auto max-md:w-full max-md:relative">
-            <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir max-md:flex-col max-md:justify-center max-md:items-center">
+            <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir max-md:flex-col max-md:justify-center max-md:items-center max-md:text-2xl">
               <div className="flex justify-center items-center space-x-6 max-md:flex-col max-md:space-x-0 max-md:space-y-2 max-md:mb-4">
                 <p className="hover:cursor-pointer hover:underline">Inicio</p>
                 <p className="hover:cursor-pointer hover:underline">
@@ -100,7 +100,7 @@ function HomePage() {
               </div>
               <div>
                 <p className="hover:cursor-pointer hover:underline text-white bg-sky-950 rounded-lg px-3 py-2">
-                  <a className="px-3 py-2" href="http://surfdata.online/login">
+                  <a className="px-3 py-2" href="https://surfdata.online/login">
                     Login
                   </a>
                 </p>
