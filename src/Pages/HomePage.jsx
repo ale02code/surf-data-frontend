@@ -219,7 +219,7 @@ function HomePage() {
 
       {/* Footer Page */}
       <div className="h-max relative mt-12">
-        <footer className="w-screen h-max overflow-hidden z-50 max-md:">
+        <footer className="w-screen h-max overflow-hidden z-50">
           <img
             className="overflow-hidden h-max w-full object-cover"
             src={WaveImg}
@@ -227,7 +227,7 @@ function HomePage() {
           />
           <section className="h-64 w-full bg-sky-950 pb-4 text-white max-md:h-auto">
             <div className="h-full flex justify-center items-start w-4/5 gap-8 m-auto overflow-hidden max-md:flex-col">
-              <div className="h-full w-1/2 flex justify-center items-center max-md:w-full max-md:mt-5">
+              <div className="h-full w-1/2 flex justify-center items-center max-md:w-full">
                 <img
                   className="h-full w-max object-contain max-md:w-full"
                   src={MacImg}
