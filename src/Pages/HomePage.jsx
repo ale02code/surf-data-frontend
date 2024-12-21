@@ -84,7 +84,7 @@ function HomePage() {
           className={
             menu
               ? "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-max max-md:w-max max-md:p-16 max-md:z-40 max-md:right-0"
-              : "max-md:hidden"
+              : "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-max max-md:w-max max-md:p-16 max-md:z-40 max-md:right-0 max-md:hidden"
           }
         >
           <div className="flex justify-between items-center w-4/5 h-full m-auto max-md:w-full max-md:relative">
