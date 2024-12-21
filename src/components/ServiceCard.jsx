@@ -21,7 +21,7 @@ function ServiceCard({ color, img, title, desc, advantages, price }) {
 
   return (
     <div
-      className={`h-auto w-[265px] p-2 py-4 rounded-lg shadow-md flex flex-col justify-around overflow-hidden ${classes.background} ${classes.shadow}`}
+      className={`h-auto w-[265px] p-2 py-4 rounded-lg shadow-md flex flex-col justify-around overflow-hidden ${classes.background} ${classes.shadow} max-md:w-[300px]`}
     >
       <div>
         <div className="flex justify-between items-center mb-2">

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import MenuImg from "../assets/icons/menu.svg";
+import CloseImg from "../assets/icons/close.svg";
 import OceanImg from "../assets/imgs/ocean.jpg";
 import WaveImg from "../assets/imgs/wave.png";
 import MacImg from "../assets/imgs/Mac-Screen.png";
@@ -27,10 +29,15 @@ import ServiceCard from "../components/ServiceCard";
 
 function HomePage() {
   const [isMobile, setIsMobile] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     window.innerWidth > 768 ? setIsMobile(false) : setIsMobile(true);
   }, []);
+
+  const handleMenu = () => {
+    setMenu((prevState) => !prevState);
+  };
 
   return (
     <div className="relative">
@@ -42,11 +49,47 @@ function HomePage() {
           alt="Waves"
           draggable="false"
         />
+        {/* Close menu */}
 
-        <header className="h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black">
-          <div className="flex justify-between items-center w-4/5 h-full m-auto max-md:w-full">
-            <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir">
-              <div className="flex justify-center items-center space-x-6">
+        <div
+          className={
+            menu
+              ? "hidden max-md:block max-md:absolute max-md:top-5 max-md:right-5 max-md:z-50"
+              : "hidden"
+          }
+        >
+          <img
+            className="h-10"
+            src={CloseImg}
+            alt="Close Img"
+            onClick={handleMenu}
+          />
+        </div>
+        <div
+          className={
+            menu
+              ? "hidden"
+              : "hidden max-md:block max-md:absolute max-md:top-3 max-md:right-3 max-md:z-50"
+          }
+        >
+          <img
+            className="h-16"
+            src={MenuImg}
+            alt="Close Img"
+            onClick={handleMenu}
+          />
+        </div>
+
+        <header
+          className={
+            menu
+              ? "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-max max-md:w-max max-md:p-16 max-md:z-40 max-md:right-0"
+              : "max-md:hidden"
+          }
+        >
+          <div className="flex justify-between items-center w-4/5 h-full m-auto max-md:w-full max-md:relative">
+            <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir max-md:flex-col max-md:justify-center max-md:items-center">
+              <div className="flex justify-center items-center space-x-6 max-md:flex-col max-md:space-x-0 max-md:space-y-2 max-md:mb-4">
                 <p className="hover:cursor-pointer hover:underline">Inicio</p>
                 <p className="hover:cursor-pointer hover:underline">
                   Información
