@@ -156,7 +156,7 @@ function HomePage() {
             </article>
             <div className="overflow-hidden h-60">
               <img
-                className="h-full min-w-max object-cover"
+                className="h-full object-cover"
                 src={OctopusImg}
                 alt="Octopus Image"
               />
