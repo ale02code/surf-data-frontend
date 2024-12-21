@@ -146,7 +146,7 @@ function HomePage() {
           <div className="w-4/5 text-white m-auto overflow-hidden flex justify-evenly items-center flex-wrap">
             <article className="w-3/6 max-md:w-full">
               <h3 className="text-3xl font-bold font-agrandir capitalize">
-                Nice to Meet You!
+                Conoce de Surf Data!
               </h3>
               <p className="text-lg text-neutral-100 text-pretty mb-4">
                 {isMobile
@@ -219,22 +219,22 @@ function HomePage() {
 
       {/* Footer Page */}
       <div className="h-max relative mt-12">
-        <footer className="w-screen h-max overflow-hidden z-50">
+        <footer className="w-screen h-max overflow-hidden z-50 max-md:">
           <img
             className="overflow-hidden h-max w-full object-cover"
             src={WaveImg}
             alt="Wave"
           />
-          <section className="h-64 w-full bg-sky-950 pb-4 text-white">
-            <div className="h-full flex justify-center items-start w-4/5 gap-8 m-auto overflow-hidden">
-              <div className="h-full w-1/2 flex justify-center items-center">
+          <section className="h-64 w-full bg-sky-950 pb-4 text-white max-md:h-auto">
+            <div className="h-full flex justify-center items-start w-4/5 gap-8 m-auto overflow-hidden max-md:flex-col">
+              <div className="h-full w-1/2 flex justify-center items-center max-md:w-full max-md:mt-5">
                 <img
-                  className="h-full w-max object-contain"
+                  className="h-full w-max object-contain max-md:w-full"
                   src={MacImg}
                   alt="Mac Picture"
                 />
               </div>
-              <div className="w-1/2 flex flex-col justify-evenly gap-6 h-full">
+              <div className="w-1/2 flex flex-col justify-evenly gap-6 h-full max-md:w-full">
                 <form className="flex w-full border-2 border-white rounded-3xl overflow-hidden text-lg">
                   <input
                     type="email"
@@ -243,22 +243,22 @@ function HomePage() {
                   />
                   <input
                     type="submit"
-                    className="w-1/4 bg-[#69b3f8]  cursor-pointer font-bold text-sky-950"
+                    className="w-1/4 bg-[#69b3f8] cursor-pointer font-bold text-sky-950"
                   />
                 </form>
                 <div className="w-full flex justify-around items-start">
-                  <div>
-                    <h6 className="mb-2 font-bold text-2xl">Partnership</h6>
+                  <div className="max-md:text-center">
+                    <h6 className="mb-2 font-bold text-2xl">Alliance</h6>
                     <p>Websites</p>
                     <p>Social Media</p>
                     <p>Branding</p>
                   </div>
-                  <div>
+                  <div className="max-md:text-center">
                     <h6 className="mb-2 font-bold text-2xl">About</h6>
                     <p>Our projects</p>
                     <p>Careers</p>
                   </div>
-                  <div>
+                  <div className="max-md:text-center">
                     <h6 className="mb-2 font-bold text-2xl">Support</h6>
                     <p>Support request</p>
                     <p>Contact</p>
