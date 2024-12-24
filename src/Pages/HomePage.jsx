@@ -54,7 +54,7 @@ function HomePage() {
         <div
           className={
             menu
-              ? "hidden max-md:block max-md:absolute max-md:top-5 max-md:right-5 max-md:z-50"
+              ? "hidden max-md:block max-md:top-5 max-md:right-5 max-md:z-50 max-md:fixed"
               : "hidden"
           }
         >
@@ -83,13 +83,13 @@ function HomePage() {
         <header
           className={
             menu
-              ? "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-80 max-md:w-60 max-md:z-40 max-md:right-0"
+              ? "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-full max-md:w-full max-md:z-40 max-md:right-0 max-md:fixed"
               : "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-max max-md:w-max max-md:p-16 max-md:z-40 max-md:right-0 max-md:hidden"
           }
         >
           <div className="flex justify-between items-center w-4/5 h-full m-auto max-md:w-full max-md:relative">
-            <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir max-md:flex-col max-md:justify-center max-md:items-center max-md:text-2xl">
-              <div className="flex justify-center items-center space-x-6 max-md:flex-col max-md:space-x-0 max-md:space-y-2 max-md:mb-4">
+            <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir max-md:flex-col max-md:justify-center max-md:items-center max-md:text-4xl">
+              <div className="flex justify-center items-center space-x-6 max-md:flex-col max-md:space-x-0 max-md:space-y-6 max-md:mb-7">
                 <p className="hover:cursor-pointer hover:underline">Inicio</p>
                 <p className="hover:cursor-pointer hover:underline">
                   Información
@@ -99,7 +99,7 @@ function HomePage() {
                 </p>
               </div>
               <div>
-                <p className="hover:cursor-pointer hover:underline text-white bg-sky-950 rounded-lg px-3 py-2">
+                <p className="hover:cursor-pointer hover:underline text-white bg-sky-950 rounded-lg px-3 py-2 max-md:py-3 max-md:px-9">
                   <a className="px-3 py-2" href="https://surfdata.online/login">
                     Login
                   </a>
@@ -127,7 +127,7 @@ function HomePage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-white h-max w-screen z-50 relative">
+      <section className="bg-white h-max w-screen">
         <div className="h-full w-full mb-32 max-md:mb-0">
           <div className="h-16 shadow-md flex justify-between items-center max-md:h-28">
             <div className="flex justify-between items-center w-4/5 m-auto">
@@ -210,7 +210,7 @@ function HomePage() {
       </section>
 
       {/* Plans Section */}
-      <section className="bg-white w-screen z-50 relative h-max overflow-hidden">
+      <section className="bg-white w-screen h-max overflow-hidden">
         <div className="w-4/5 h-max flex flex-col justify-center items-center m-auto">
           <Title
             text="Descubra nuestros planes personalizados, diseñados para su empresa"
