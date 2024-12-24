@@ -184,14 +184,14 @@ function HomePage() {
 
       {/* Information Section */}
       <section className="bg-white h-max w-screen">
-        <img src={WaveBorderImg2} alt="Wave Border" />
+        <img className="w-full" src={WaveBorderImg2} alt="Wave Border" />
         <section className="h-72 bg-gray-800 flex justify-center items-center max-md:h-max max-md:py-6">
           <div className="w-4/5 text-white m-auto overflow-hidden flex justify-evenly items-center flex-wrap">
             <article className="w-3/6 max-md:w-full">
-              <h3 className="text-3xl font-bold font-agrandir capitalize">
+              <h3 className="text-3xl font-bold font-agrandir capitalize max-md:text-center">
                 Conoce de Surf Data!
               </h3>
-              <p className="text-lg text-neutral-100 text-pretty mb-4">
+              <p className="text-lg text-neutral-100 mb-4 max-md:text-justify"> 
                 {isMobile
                   ? "Impulsar nuestros servicios digitales a un ámbito contable, ofreciendo calidad de soluciones para mejorar la eficiencia operativa y la toma de decisiones estratégicas."
                   : "Impulsar nuestros servicios digitales a un ámbito contable, ofreciendo calidad de soluciones para mejorar la eficiencia operativa y la toma de decisiones estratégicas de nuestros clientes, permitiéndoles alcanzar un nuevo nivel de excelencia y competitividad."}
@@ -206,7 +206,7 @@ function HomePage() {
             </div>
           </div>
         </section>
-        <img src={WaveBorderImg} alt="Wave Border" />
+        <img className="w-full" src={WaveBorderImg} alt="Wave Border" />
       </section>
 
       {/* Plans Section */}
@@ -261,14 +261,14 @@ function HomePage() {
       </section>
 
       {/* Footer Page */}
-      <div className="h-max relative mt-12">
+      <div className="h-max relative">
         <footer className="w-screen h-max overflow-hidden z-50">
           <img
             className="overflow-hidden h-max w-full object-cover"
             src={WaveImg}
             alt="Wave"
           />
-          <section className="h-64 w-full bg-sky-950 pb-4 text-white max-md:h-auto">
+          <section className="h-64 w-full bg-sky-950 pb-2 text-white max-md:h-auto">
             <div className="h-full flex justify-center items-start w-4/5 gap-8 m-auto overflow-hidden max-md:flex-col">
               <div className="h-full w-1/2 flex justify-center items-center max-md:w-full">
                 <img
