@@ -1,47 +1,49 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SelectedDBContext } from "../context/SelectedDBContext";
-import LogoImg from "../assets/imgs/logo.png";
+import LogoImg from "../assets/icons/surfdata.png";
 
 function LoginPage() {
-  const [loginData, setLoginData] = useState({ login_data: [] });
-  const [password, setPassword] = useState("");
-  const [selectedKey, setSelectedKey] = useState("");
-  const [inputError, setInputError] = useState(false);
-  const navigate = useNavigate();
-  const { setDb } = useContext(SelectedDBContext);
+  // const [loginData, setLoginData] = useState({ login_data: [] });
+  // const [password, setPassword] = useState("");
+  // const [selectedKey, setSelectedKey] = useState("");
+  // const [inputError, setInputError] = useState(false);
+  // const navigate = useNavigate();
+  // const { setDb } = useContext(SelectedDBContext);
 
-  useEffect(() => {
-    const fetchingData = async () => {
-      try {
-        const response = await fetch(
-          "https://sales-manager-api.onrender.com/login"
-        );
-        const responseJSON = await response.json();
-        setLoginData(responseJSON);
-      } catch (e) {
-        console.error(`Error with fetch data: ${e}`);
-      }
-    };
-    fetchingData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchingData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://sales-manager-api.onrender.com/login"
+  //       );
+  //       const responseJSON = await response.json();
+  //       setLoginData(responseJSON);
+  //     } catch (e) {
+  //       console.error(`Error with fetch data: ${e}`);
+  //     }
+  //   };
+  //   fetchingData();
+  // }, []);
 
-  const handleSelect = (llave) => {
-    setSelectedKey(llave);
-  };
+  // const handleSelect = (llave) => {
+  //   setSelectedKey(llave);
+  // };
 
-  const handleRegister = () => {
-    const selectedDB = loginData.login_data.find(
-      (db) => db.llave === selectedKey
-    );
+  // const handleRegister = () => {
+  //   const selectedDB = loginData.login_data.find(
+  //     (db) => db.llave === selectedKey
+  //   );
 
-    if (selectedDB && selectedDB.llave === password) {
-      setDb(selectedDB.empresa);
-      navigate(`/${selectedDB.empresa}/dashboard`);
-    } else {
-      setInputError(true);
-    }
-  };
+  //   if (selectedDB && selectedDB.llave === password) {
+  //     setDb(selectedDB.empresa);
+  //     navigate(`/${selectedDB.empresa}/dashboard`);
+  //   } else {
+  //     setInputError(true);
+  //   }
+  // };
+
+  const inputError = false;
 
   let stylesInputError = inputError
     ? "w-full p-2.5 bg-red-100 border-2 border-red-300 outline-none text-gray-900 rounded-lg"
@@ -51,11 +53,12 @@ function LoginPage() {
     <div className="h-screen w-screen overflow-hidden flex justify-center items-center bg-blue-900 text-white text-xl">
       <main className="form-signin h-auto max-h-[95%] w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px] overflow-hidden">
         <form className="flex justify-center items-center flex-col px-5 py-3">
-          <img
-            className="mb-2 w-44 h-44 rounded-full"
-            src={LogoImg}
-            alt="Surf Data Logo"
-          />
+          <div className="w-40 h-40 rounded-full bg-sky-950 p-5 flex justify-center items-center mb-5">
+            <img
+              src={LogoImg}
+              alt="Surf Data Logo"
+            />
+          </div>
           <h1 className="h3 mb-3 font-normal capitalize">
             Por favor regístrate
           </h1>
@@ -66,17 +69,17 @@ function LoginPage() {
               name="Bases_de_datos"
               id="select_DB"
               defaultValue=""
-              onChange={(e) => handleSelect(e.target.value)}
+              // onChange={(e) => handleSelect(e.target.value)}
             >
               <option disabled value="">
                 Selecciona un proyecto
               </option>
               <optgroup label="Bases de datos disponibles">
-                {loginData.login_data.map((db) => (
+                {/* {loginData.login_data.map((db) => (
                   <option key={db.id} value={db.llave}>
                     {db.empresa}
                   </option>
-                ))}
+                ))} */}
               </optgroup>
             </select>
             <div className="w-full flex flex-col">
@@ -89,14 +92,14 @@ function LoginPage() {
                 maxLength={4}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {inputError && (
+              {/* {inputError && (
                 <small className="text-red-300">Contraseña incorrecta</small>
-              )}
+              )} */}
             </div>
             <button
               type="button"
               className="bg-indigo-500 p-2.5 rounded-lg uppercase"
-              onClick={handleRegister}
+              // onClick={handleRegister}
             >
               Ingresar
             </button>
