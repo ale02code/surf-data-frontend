@@ -268,7 +268,7 @@ function HomePage() {
             src={WaveImg}
             alt="Wave"
           />
-          <section className="h-64 w-full bg-sky-950 pb-2 text-white max-md:h-auto">
+          <section className="h-64 w-full bg-sky-950 pb-2 text-white max-md:h-auto max-md:pb-5">
             <div className="h-full flex justify-center items-start w-4/5 gap-8 m-auto overflow-hidden max-md:flex-col">
               <div className="h-full w-1/2 flex justify-center items-center max-md:w-full">
                 <img
@@ -309,7 +309,7 @@ function HomePage() {
                 </div>
                 <div className="w-full flex flex-col justify-between items-center text-lg">
                   <span className="w-full h-1 border-b border-neutral-300 mb-2" />
-                  <div className="h-8 w-full flex justify-between">
+                  <div className="h-8 w-full flex justify-between max-md:mt-1">
                     <p className="font-bold text-white">
                       All rights reserved 2024
                     </p>
