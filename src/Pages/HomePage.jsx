@@ -191,7 +191,7 @@ function HomePage() {
               <h3 className="text-3xl font-bold font-agrandir capitalize max-md:text-center">
                 Conoce de Surf Data!
               </h3>
-              <p className="text-lg text-neutral-100 mb-4 max-md:text-justify"> 
+              <p className="text-lg text-neutral-100 mb-4 max-md:text-justify">
                 {isMobile
                   ? "Impulsar nuestros servicios digitales a un ámbito contable, ofreciendo calidad de soluciones para mejorar la eficiencia operativa y la toma de decisiones estratégicas."
                   : "Impulsar nuestros servicios digitales a un ámbito contable, ofreciendo calidad de soluciones para mejorar la eficiencia operativa y la toma de decisiones estratégicas de nuestros clientes, permitiéndoles alcanzar un nuevo nivel de excelencia y competitividad."}
@@ -281,12 +281,12 @@ function HomePage() {
                 <form className="flex w-full border-2 border-white rounded-3xl overflow-hidden text-lg">
                   <input
                     type="email"
-                    className="w-3/4 p-2 outline-none text-black"
+                    className="w-3/4 p-2 outline-none text-black rounded-none"
                     placeholder="Your e-mail"
                   />
                   <input
                     type="submit"
-                    className="w-1/4 bg-[#69b3f8] cursor-pointer font-bold text-sky-950"
+                    className="w-1/4 bg-[#69b3f8] cursor-pointer font-bold text-sky-950 rounded-none"
                   />
                 </form>
                 <div className="w-full flex justify-around items-start">
@@ -360,6 +360,21 @@ function HomePage() {
             </div>
           </section>
         </footer>
+      </div>
+
+      {/* Rights */}
+      <div className="h-10 w-full bg-neutral-900 text-white flex justify-center items-center">
+        <p className="text-center text-lg">
+          design and develop by
+          <a
+            className="font-bold mx-1"
+            href="https://www.instagram.com/ale02.code/"
+            target="_BLANK"
+            rel="noopener noreferrer"
+          >
+            ale02code
+          </a>
+        </p>
       </div>
     </div>
   );

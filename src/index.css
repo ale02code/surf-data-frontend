@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* general changes */
 body::-webkit-scrollbar {
   width: 10px;
 }
@@ -14,10 +15,12 @@ body::-webkit-scrollbar-thumb {
   background-color: #212529;
 }
 
+/* Title background letters */
 #title {
   text-shadow: 4px 3px rgb(105, 179, 248);
 }
 
+/* Animation CSS */
 .animation-fade {
   animation: fadeIn 1s;
 }
@@ -31,6 +34,7 @@ body::-webkit-scrollbar-thumb {
     transform: translateY(-100px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0px);
     opacity: 1;
@@ -41,6 +45,7 @@ body::-webkit-scrollbar-thumb {
   from {
     transform: rotate(10deg);
   }
+
   to {
     transform: rotate(-10deg);
   }
