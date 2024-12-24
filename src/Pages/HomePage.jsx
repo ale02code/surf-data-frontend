@@ -109,7 +109,7 @@ function HomePage() {
           </div>
         </header>
 
-        <hgroup className="text-center">
+        <hgroup className="text-center animation-fade">
           <h1
             id="title"
             className="font-black text-8xl uppercase text-white shadow-custom mb-3 max-md:text-6xl"
@@ -187,7 +187,7 @@ function HomePage() {
         <img className="w-full" src={WaveBorderImg2} alt="Wave Border" />
         <section className="h-72 bg-gray-800 flex justify-center items-center max-md:h-max max-md:py-6">
           <div className="w-4/5 text-white m-auto overflow-hidden flex justify-evenly items-center flex-wrap">
-            <article className="w-3/6 max-md:w-full">
+            <article className="w-3/6 max-md:w-full overflow-hidden">
               <h3 className="text-3xl font-bold font-agrandir capitalize max-md:text-center">
                 Conoce de Surf Data!
               </h3>
@@ -197,9 +197,9 @@ function HomePage() {
                   : "Impulsar nuestros servicios digitales a un ámbito contable, ofreciendo calidad de soluciones para mejorar la eficiencia operativa y la toma de decisiones estratégicas de nuestros clientes, permitiéndoles alcanzar un nuevo nivel de excelencia y competitividad."}
               </p>
             </article>
-            <div className="overflow-hidden h-60">
+            <div className="h-60">
               <img
-                className="h-full object-cover"
+                className="h-full object-cover animation-balance"
                 src={OctopusImg}
                 alt="Octopus Image"
               />

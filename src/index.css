@@ -17,3 +17,31 @@ body::-webkit-scrollbar-thumb {
 #title {
   text-shadow: 4px 3px rgb(105, 179, 248);
 }
+
+.animation-fade {
+  animation: fadeIn 1s;
+}
+
+.animation-balance {
+  animation: balance 2s infinite alternate ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes balance {
+  from {
+    transform: rotate(10deg);
+  }
+  to {
+    transform: rotate(-10deg);
+  }
+}

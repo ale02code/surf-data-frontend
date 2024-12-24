@@ -24,7 +24,7 @@ export default {
 
       maxHeight: {
         '500': '500',
-      }
+      },
     },
   },
   plugins: [],
