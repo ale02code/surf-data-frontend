@@ -6,7 +6,7 @@ ofreciendo una solución moderna y escalable.
 
 ## 🚀 **Características**
 
-- 📊 Gestión de ventas y reservaciones.
+- 📊 Gestión de ventas.
 - 🖨️ Generación de PDFs con los detalles de las ventas.
 - 🌐 Soporte para múltiples empresas mediante URLs dinámicas.
 - 💡 Context API para manejo centralizado del estado.
@@ -86,3 +86,4 @@ Este proyecto está licenciado bajo la [MIT License](./LICENSE).
 
 - **GitHub**: [ale02code](https://github.com/ale02code)
 - **Correo Electrónico**: [chchacon02@gmail.com](mailto:chchacon02@gmail.com)
+- **Instagram**: [ale02code](https://www.instagram.com/ale02.code/)
