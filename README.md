@@ -1,6 +1,6 @@
-# **Sales Manager App**
+# **Surf Data**
 
-Sales Manager es una aplicación web diseñada para la gestión de ventas, reservaciones y usuarios.
+Surf Data es una aplicación web diseñada para la gestión de ventas, reservaciones y usuarios.
 Combina la potencia de **React** en el frontend, **Tailwind CSS** para el diseño, y **Flask** en el backend,
 ofreciendo una solución moderna y escalable.
 
@@ -26,13 +26,13 @@ Sigue estos pasos para ejecutar la aplicación localmente:
 1. **Clona el repositorio**:
 
    ```bash
-   git clone https://github.com/ale02code/sales-manager.git
+   git clone https://github.com/ale02code/surfData-Frontend.git
    ```
 
 2. **Cambia al directorio del proyecto**:
 
    ```bash
-   cd sales-manager
+   cd surfData-Frontend
    ```
 
 3. **Instala las dependencias**:
@@ -55,7 +55,7 @@ Sigue estos pasos para ejecutar la aplicación localmente:
    Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
    ```env
-   REACT_APP_API_URL=https://sales-manager-api.onrender.com
+   <!-- REACT_APP_API_URL=https://sales-manager-api.onrender.com -->
    ```
 
 <!-- 2. **Backend**:
