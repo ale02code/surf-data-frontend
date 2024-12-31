@@ -49,8 +49,8 @@ function HomePage() {
           alt="Waves"
           draggable="false"
         />
-        {/* Close menu */}
 
+        {/* Close menu */}
         <div
           className={
             menu
@@ -192,9 +192,26 @@ function HomePage() {
                 Conoce de Surf Data!
               </h3>
               <p className="text-lg text-neutral-100 mb-4 max-md:text-justify">
-                {isMobile
-                  ? "Impulsar nuestros servicios digitales a un ámbito contable, ofreciendo calidad de soluciones para mejorar la eficiencia operativa y la toma de decisiones estratégicas."
-                  : "Impulsar nuestros servicios digitales a un ámbito contable, ofreciendo calidad de soluciones para mejorar la eficiencia operativa y la toma de decisiones estratégicas de nuestros clientes, permitiéndoles alcanzar un nuevo nivel de excelencia y competitividad."}
+                {isMobile ? (
+                  <>
+                    Impulsar nuestros servicios digitales a un ámbito contable,
+                    ofreciendo calidad de soluciones para{" "}
+                    <mark className="bg-violet-400 text-white px-1 font-semibold">
+                      mejorar la eficiencia operativa
+                    </mark> y la toma de decisiones estratégicas.
+                  </>
+                ) : (
+                  <>
+                    Impulsar nuestros servicios digitales a un ámbito contable,
+                    ofreciendo calidad de soluciones para mejorar la eficiencia
+                    operativa y la toma de decisiones estratégicas de nuestros
+                    clientes,{" "}
+                    <mark className="bg-violet-400 text-white px-1 font-semibold">
+                      permitiéndoles alcanzar un nuevo nivel
+                    </mark>{" "}
+                    de excelencia y competitividad.
+                  </>
+                )}
               </p>
             </article>
             <div className="h-60">
