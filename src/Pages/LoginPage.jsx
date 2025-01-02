@@ -4,27 +4,29 @@ import { SelectedDBContext } from "../context/SelectedDBContext";
 import LogoImg from "../assets/icons/surfdata.png";
 
 function LoginPage() {
-  // const [loginData, setLoginData] = useState({ login_data: [] });
+  const [loginData, setLoginData] = useState({ login_data: [] });
   // const [password, setPassword] = useState("");
   // const [selectedKey, setSelectedKey] = useState("");
   // const [inputError, setInputError] = useState(false);
   // const navigate = useNavigate();
   // const { setDb } = useContext(SelectedDBContext);
 
-  // useEffect(() => {
-  //   const fetchingData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "https://sales-manager-api.onrender.com/login"
-  //       );
-  //       const responseJSON = await response.json();
-  //       setLoginData(responseJSON);
-  //     } catch (e) {
-  //       console.error(`Error with fetch data: ${e}`);
-  //     }
-  //   };
-  //   fetchingData();
-  // }, []);
+  useEffect(() => {
+    const fetchingData = async () => {
+      try {
+        const response = await fetch(
+          "/clients"
+        );
+        const responseJSON = await response.json();
+        setLoginData(responseJSON);
+        console.log(responseJSON);
+      } catch (e) {
+        console.error(`Error with fetch data: ${e}`);
+      }
+    };
+
+    fetchingData();
+  }, []);
 
   // const handleSelect = (llave) => {
   //   setSelectedKey(llave);
@@ -54,10 +56,7 @@ function LoginPage() {
       <main className="form-signin h-auto max-h-[95%] w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px] overflow-hidden">
         <form className="flex justify-center items-center flex-col px-5 py-3">
           <div className="w-40 h-40 rounded-full bg-sky-950 p-5 flex justify-center items-center mb-5">
-            <img
-              src={LogoImg}
-              alt="Surf Data Logo"
-            />
+            <img src={LogoImg} alt="Surf Data Logo" />
           </div>
           <h1 className="h3 mb-3 font-normal capitalize">
             Por favor regístrate
