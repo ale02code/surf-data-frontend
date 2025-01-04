@@ -1,26 +1,24 @@
-// import "dotenv/config";
 import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { SelectedDBContext } from "../context/SelectedDBContext";
 import LogoImg from "../assets/icons/surfdata.png";
 
 function LoginPage() {
-  const [loginData, setLoginData] = useState({ login_data: [] });
+  const [loginData, setLoginData] = useState([]);
   // const [password, setPassword] = useState("");
   // const [selectedKey, setSelectedKey] = useState("");
   // const [inputError, setInputError] = useState(false);
   // const navigate = useNavigate();
   // const { setDb } = useContext(SelectedDBContext);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchingData = async () => {
       try {
-        const response = await fetch(
-          "https://surfdata-backend.onrender.com/clients"
-        );
+        const response = await fetch(API_URL + "/clients");
         const responseJSON = await response.json();
         setLoginData(responseJSON);
-        console.log(responseJSON);
       } catch (e) {
         console.error(`Error with fetch data: ${e}`);
       }
@@ -73,11 +71,15 @@ function LoginPage() {
                 Selecciona un proyecto
               </option>
               <optgroup label="Bases de datos disponibles">
-                {loginData.map((db) => (
-                  <option key={db.id} >
-                    {db.name}
-                  </option>
-                ))}
+                {Array.isArray(loginData) ? (
+                  loginData.map((client) => (
+                    <option key={client.id} value={client.id}>
+                      {client.name}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled="true">Cargando datos...</option>
+                )}
               </optgroup>
             </select>
             <div className="w-full flex flex-col">
