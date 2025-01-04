@@ -1,6 +1,7 @@
-import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { SelectedDBContext } from "../context/SelectedDBContext";
+// import "dotenv/config";
+import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { SelectedDBContext } from "../context/SelectedDBContext";
 import LogoImg from "../assets/icons/surfdata.png";
 
 function LoginPage() {
@@ -15,7 +16,7 @@ function LoginPage() {
     const fetchingData = async () => {
       try {
         const response = await fetch(
-          "/clients"
+          "https://surfdata-backend.onrender.com/clients"
         );
         const responseJSON = await response.json();
         setLoginData(responseJSON);
@@ -45,11 +46,9 @@ function LoginPage() {
   //   }
   // };
 
-  const inputError = false;
-
-  let stylesInputError = inputError
-    ? "w-full p-2.5 bg-red-100 border-2 border-red-300 outline-none text-gray-900 rounded-lg"
-    : "w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg";
+  // let stylesInputError = inputError
+  //   ? "w-full p-2.5 bg-red-100 border-2 border-red-300 outline-none text-gray-900 rounded-lg"
+  //   : "w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg";
 
   return (
     <div className="h-screen w-screen overflow-hidden flex justify-center items-center bg-blue-900 text-white text-xl">
@@ -74,25 +73,25 @@ function LoginPage() {
                 Selecciona un proyecto
               </option>
               <optgroup label="Bases de datos disponibles">
-                {/* {loginData.login_data.map((db) => (
-                  <option key={db.id} value={db.llave}>
-                    {db.empresa}
+                {loginData.map((db) => (
+                  <option key={db.id} >
+                    {db.name}
                   </option>
-                ))} */}
+                ))}
               </optgroup>
             </select>
             <div className="w-full flex flex-col">
               <label htmlFor="floatingPassword">Introduce tu contraseña:</label>
               <input
                 type="password"
-                className={stylesInputError}
+                // className={stylesInputError}
                 id="floatingPassword"
                 placeholder="Password"
                 maxLength={4}
-                onChange={(e) => setPassword(e.target.value)}
+                // onChange={(e) => setPassword(e.target.value)}
               />
               {/* {inputError && (
-                <small className="text-red-300">Contraseña incorrecta</small>
+                <p className="text-red-500 text-sm">Contraseña incorrecta</p>
               )} */}
             </div>
             <button

@@ -198,7 +198,8 @@ function HomePage() {
                     ofreciendo calidad de soluciones para{" "}
                     <mark className="bg-violet-400 text-white px-1 font-semibold">
                       mejorar la eficiencia operativa
-                    </mark> y la toma de decisiones estratégicas.
+                    </mark>{" "}
+                    y la toma de decisiones estratégicas.
                   </>
                 ) : (
                   <>
