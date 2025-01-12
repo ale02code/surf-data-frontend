@@ -7,8 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function LoginPage() {
   const [loginData, setLoginData] = useState([]);
-  const [password, setPassword] = useState("");
-  const [selectedKey, setSelectedKey] = useState("");
+  const [dataForm, setDataForm] = useState({ client: "", password: "" });
   const [inputError, setInputError] = useState(false);
   const navigate = useNavigate();
   const { setDb } = useContext(SelectedDBContext);
@@ -19,7 +18,6 @@ function LoginPage() {
         const response = await fetch(API_URL + "/clients");
         const responseJSON = await response.json();
         setLoginData(responseJSON);
-        console.log(responseJSON);
       } catch {
         console.error("Error with fetch data");
       }
@@ -28,8 +26,8 @@ function LoginPage() {
     fetchingData();
   }, []);
 
-  const handleSelect = (llave) => {
-    setSelectedKey(llave);
+  const handleSelect = (clientName) => {
+    setSelectedKey(clientName);
   };
 
   const handleRegister = () => {
@@ -45,15 +43,20 @@ function LoginPage() {
     }
   };
 
+  function changeStyleError(color) {
+    let style = `w-full p-2.5 bg-${color}-100 border-${color}-300 border-2 outline-none text-gray-900 rounded-lg`;
+    return style;
+  }
+
   let stylesInputError = inputError
-    ? "w-full p-2.5 bg-red-100 border-2 border-red-300 outline-none text-gray-900 rounded-lg"
-    : "w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg";
+    ? changeStyleError("red")
+    : changeStyleError("gray");
 
   return (
     <div className="h-screen w-screen overflow-hidden flex justify-center items-center bg-blue-900 text-white text-xl">
       <main className="form-signin h-auto max-h-[95%] w-[90%] bg-black rounded-lg bg-opacity-80 max-w-[490px] overflow-hidden">
         <form className="flex justify-center items-center flex-col px-5 py-3">
-          <div className="w-40 h-40 rounded-full bg-sky-950 p-5 flex justify-center items-center mb-5">
+          <div className="w-40 h-40 rounded-full bg-sky-950 p-5 flex justify-center items-center m-2">
             <img src={LogoImg} alt="Surf Data Logo" />
           </div>
           <h1 className="h3 mb-3 font-normal capitalize">
@@ -65,33 +68,29 @@ function LoginPage() {
               className="w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg"
               name="Bases_de_datos"
               id="select_DB"
-              defaultValue=""
               onChange={(e) => handleSelect(e.target.value)}
             >
-              <option disabled value="">
+              <option disabled="true" selected="true">
                 Selecciona un proyecto
               </option>
               <optgroup label="Bases de datos disponibles">
-                {Array.isArray(loginData) ? (
-                  loginData.map((client) => (
-                    <option key={client.id} value={client.id}>
-                      {client.name}
-                    </option>
-                  ))
-                ) : (
-                  <option disabled="true">Cargando datos...</option>
-                )}
+                {/* Print names */}
+                {loginData.map((client) => (
+                  <option key={client.id} value={client.id}>
+                    {client.name}
+                  </option>
+                ))}
               </optgroup>
             </select>
             <div className="w-full flex flex-col">
-              <label htmlFor="floatingPassword">Introduce tu contraseña:</label>
+              <label htmlFor="loginPassword">Introduce tu contraseña:</label>
               <input
                 type="password"
                 className={stylesInputError}
-                id="floatingPassword"
+                id="loginPassword"
                 placeholder="Password"
                 maxLength={4}
-                onChange={(e) => setPassword(e.target.value)}
+                //! Send Data onChange={(e) => setDataForm()}
               />
               {inputError && (
                 <p className="text-red-500 text-sm">Contraseña incorrecta</p>
@@ -105,9 +104,7 @@ function LoginPage() {
               Ingresar
             </button>
           </div>
-          <p className="mt-5 mb-3 text-body-secondary">
-            Sistema Administrativo
-          </p>
+          <p className="m-3">Sistema Administrativo</p>
         </form>
       </main>
     </div>
