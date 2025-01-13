@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SelectedDBContext } from "../context/SelectedDBContext";
 import LogoImg from "../assets/icons/surfdata.png";
+import { stringify } from "postcss";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -9,8 +10,8 @@ function LoginPage() {
   const [loginData, setLoginData] = useState([]);
   const [dataForm, setDataForm] = useState({ client: "", password: "" });
   const [inputError, setInputError] = useState(false);
-  const navigate = useNavigate();
   const { setDb } = useContext(SelectedDBContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -26,20 +27,38 @@ function LoginPage() {
     fetchingData();
   }, []);
 
-  const handleSelect = (clientName) => {
-    setSelectedKey(clientName);
-  };
-
-  const handleRegister = () => {
-    const selectedDB = loginData.find(
-      (client) => client.password === selectedKey
-    );
-
-    if (selectedDB && selectedDB.password === password) {
-      setDb(selectedDB.name);
-      navigate(`/${selectedDB.name}/dashboard`);
-    } else {
+  const handleLogin = async () => {
+    if (!dataForm.client || !dataForm.password) {
       setInputError(true);
+      return;
+    }
+
+    try {
+      const response = await fetch(API_URL + "/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: stringify({
+          clientId: dataForm.client,
+          password: dataForm.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Credenciales invalidas o fallo del servidor");
+      }
+
+      const responseData = await response.json();
+
+      if (responseData.success) {
+        setDb(responseData.dbName);
+        navigate(`/${responseData.dbClient}/dashboard`);
+      } else {
+        inputError(true);
+      }
+    } catch (e) {
+      console.log(`Error with request type post: ${e}`);
     }
   };
 
@@ -68,7 +87,6 @@ function LoginPage() {
               className="w-full p-2.5 bg-gray-100 border-2 border-gray-300 outline-none text-gray-900 rounded-lg"
               name="Bases_de_datos"
               id="select_DB"
-              onChange={(e) => handleSelect(e.target.value)}
             >
               <option disabled="true" selected="true">
                 Selecciona un proyecto
@@ -99,7 +117,7 @@ function LoginPage() {
             <button
               type="button"
               className="bg-indigo-500 p-2.5 rounded-lg uppercase"
-              onClick={handleRegister}
+              onClick={handleLogin()}
             >
               Ingresar
             </button>
