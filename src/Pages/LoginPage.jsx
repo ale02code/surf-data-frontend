@@ -22,11 +22,10 @@ function LoginPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(dataForm);
   };
 
   const handleLogin = async () => {
-    if (!dataForm.client || !dataForm.password) {
+    if (!dataForm.userName || !dataForm.password) {
       setErrorLogin(true);
       return;
     }
@@ -37,8 +36,8 @@ function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: stringify({
-          clientId: dataForm.client,
+        body: JSON.stringify({
+          userName: dataForm.userName,
           password: dataForm.password,
         }),
       });
@@ -49,14 +48,17 @@ function LoginPage() {
 
       const responseData = await response.json();
 
-      if (responseData.success) {
-        setDb(responseData.dbName);
-        navigate(`/${responseData.dbClient}/dashboard`);
+      if (responseData) {
+        setDb(dataForm.userName);
+        navigate(`/${dataForm.userName}/dashboard`);
+        console.log("Login Exitoso");
       } else {
         setErrorLogin(true);
+        console.log("Login Fallido");
       }
     } catch (e) {
       console.log(`Error with request type post: ${e}`);
+      setErrorLogin(true);
     }
   };
 
@@ -107,7 +109,7 @@ function LoginPage() {
             </div>
             <button
               type="submit"
-              className="bg-indigo-500 p-2.5 rounded-lg uppercase"
+              className="bg-indigo-500 p-2.5 rounded-lg uppercase font-semibold"
               onClick={handleLogin}
             >
               Ingresar
