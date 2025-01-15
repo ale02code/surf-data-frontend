@@ -5,6 +5,8 @@ import SellForm from "../components/SellForm";
 import PrinterButton from "../components/PrinterButton";
 
 function RegisterPage() {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Contexts
   const { sellFormOpen, setSellFormOpen } = useContext(SellFormContext);
 
@@ -23,17 +25,22 @@ function RegisterPage() {
     setSellFormOpen((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    console.log(normalizedEmpresa);
+  const token = localStorage.getItem("token");
 
+  useEffect(() => {
     const fetchVentas = async () => {
       try {
-        const response = await fetch(
-          `https://sales-manager-api.onrender.com/clients/ventas`
-        );
+        const response = await fetch(API_URL + "/sales", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         if (!response.ok) throw new Error("Failed to fetch ventas data");
+
         const result = await response.json();
-        setVentas(result.ventas_dinamicas[normalizedEmpresa]);
+        setVentas(result);
+        console.log(result);
       } catch (error) {
         setError(`Error: ${error}`);
       } finally {
@@ -42,7 +49,7 @@ function RegisterPage() {
     };
 
     fetchVentas();
-  }, [normalizedEmpresa]);
+  }, []);
 
   const handlePrintClick = (venta) => {
     setSelectedVenta(venta);

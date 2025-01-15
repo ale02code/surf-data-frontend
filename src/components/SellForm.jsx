@@ -34,7 +34,6 @@ function SellForm() {
       await response.json();
       alert("Venta creada con éxito");
 
-      // Limpiar el formulario después de la venta exitosa
       setFormData({
         producto: "",
         precio: "",

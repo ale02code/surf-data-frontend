@@ -1,8 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SelectedDBContext } from "../context/SelectedDBContext";
 import LogoImg from "../assets/icons/surfdata.png";
-import { stringify } from "postcss";
+import { data } from "autoprefixer";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -49,9 +49,11 @@ function LoginPage() {
       const responseData = await response.json();
 
       if (responseData) {
+        console.log("Login Exitoso");
+        console.log(responseData.token);
+        localStorage.setItem("token", responseData.token);
         setDb(dataForm.userName);
         navigate(`/${dataForm.userName}/dashboard`);
-        console.log("Login Exitoso");
       } else {
         setErrorLogin(true);
         console.log("Login Fallido");
