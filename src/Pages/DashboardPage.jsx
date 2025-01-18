@@ -12,7 +12,6 @@ function RegisterPage() {
 
   // Params
   const { empresa } = useParams();
-  const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "_");
 
   // State
   const [data, setData] = useState(null);

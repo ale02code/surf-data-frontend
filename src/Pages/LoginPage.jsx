@@ -1,15 +1,12 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SelectedDBContext } from "../context/SelectedDBContext";
 import LogoImg from "../assets/icons/surfdata.png";
-import { data } from "autoprefixer";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 function LoginPage() {
   const [dataForm, setDataForm] = useState({ userName: "", password: "" });
   const [errorLogin, setErrorLogin] = useState(false);
-  const { setDb } = useContext(SelectedDBContext);
   const navigate = useNavigate();
 
   const handleFillDataFrom = (event) => {
@@ -50,16 +47,11 @@ function LoginPage() {
 
       if (responseData) {
         console.log("Login Exitoso");
-        console.log(responseData.token);
         localStorage.setItem("token", responseData.token);
-        setDb(dataForm.userName);
         navigate(`/${dataForm.userName}/dashboard`);
-      } else {
-        setErrorLogin(true);
-        console.log("Login Fallido");
       }
     } catch (e) {
-      console.log(`Error with request type post: ${e}`);
+      console.log("Login Fallido: ", e);
       setErrorLogin(true);
     }
   };

@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SellFormContext } from "../context/SellFormContext";
-import { SelectedDBContext } from "../context/SelectedDBContext";
 import { FormDataContext } from "../context/FormDataContext";
 
 function SellForm() {
