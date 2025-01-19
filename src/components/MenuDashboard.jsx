@@ -13,9 +13,7 @@ function MenuDashboard() {
     { label: "Configuración", img: settingsIcon },
   ];
 
-  const handleSectionView = (nameSection) => {
-    console.log(nameSection);
-  };
+  const handleSectionView = (nameSection) => {};
 
   return (
     <header className="h-full min-w-56 relative text-white p-2 overflow-hidden border-r border-gray-300 bg-gray-100">

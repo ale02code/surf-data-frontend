@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 // Contexts imports
 import { SalesControlContext } from "../context/SalesControlContext";
@@ -28,6 +28,28 @@ function RegisterPage() {
 
   const handleSellFormToggle = () => {
     setSellFormOpen((prevState) => !prevState);
+  };
+
+  const handleCountReturnSales = (sales) => {
+    const count = sales.filter((sale) => !sale.estado).length;
+    return count;
+  };
+
+  const handleCountProducts = (sales) => {
+    const count = sales.reduce((acc, sales) => acc + sales.cantidad, 0);
+    return count;
+  };
+
+  const handleCountProfit = (sales) => {
+    const totalProfit = sales.reduce((acc, sale) => {
+      const cleanedPrice = sale.precio.replace(/[^\d.-]/g, "");
+      const price = parseFloat(cleanedPrice);
+      const qua = parseInt(sale.cantidad, 10);
+
+      return acc + price * qua;
+    }, 0);
+
+    return `$${totalProfit}`;
   };
 
   return (
@@ -70,17 +92,17 @@ function RegisterPage() {
             />
             <InfoCard
               src={returnIcon}
-              qua={sales.length}
+              qua={handleCountReturnSales(sales)}
               label="Devoluciones en total"
             />
             <InfoCard
               src={productsIcon}
-              qua={sales.length}
+              qua={handleCountProducts(sales)}
               label="Productos en total"
             />
             <InfoCard
               src={moneyIcon}
-              qua={sales.length}
+              qua={handleCountProfit(sales)}
               label="Ganancias en total"
             />
           </div>
