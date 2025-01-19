@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 // Contexts imports
 import { SalesControlContext } from "../context/SalesControlContext";
@@ -6,7 +6,7 @@ import { SellFormContext } from "../context/SellFormContext";
 
 import { useParams } from "react-router-dom";
 import MenuDashboard from "../components/MenuDashboard";
-import SellForm from "../components/SellForm";
+import SaleForm from "../components/SaleForm";
 import InfoCard from "../components/InfoCard";
 
 // Icons imports
@@ -54,7 +54,7 @@ function RegisterPage() {
 
   return (
     <section className="h-screen w-full overflow-x-hidden">
-      {sellFormOpen && <SellForm />}
+      {sellFormOpen && <SaleForm />}
 
       <div className="h-full w-full overflow-x-hidden flex px-3">
         <MenuDashboard />

@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Eliminar flechas en Webkit (Chrome, Safari, Edge) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Eliminar flechas en Firefox pero sin afectar la escritura */
+input[type="number"] {
+  -moz-appearance: textfield; /* Esto quita las flechas, pero conserva la funcionalidad de escribir */
+  text-align: left;  /* Asegura que el texto esté alineado correctamente */
+}
+
 /* general changes */
 body::-webkit-scrollbar {
   width: 10px;
