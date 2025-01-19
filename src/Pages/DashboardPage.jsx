@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { SellFormContext } from "../context/SellFormContext";
 import SellForm from "../components/SellForm";
 import PrinterButton from "../components/PrinterButton";
+import MenuDashboard from "../components/MenuDashboard";
 
 function RegisterPage() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -13,14 +14,13 @@ function RegisterPage() {
   // Params
   const { empresa } = useParams();
 
-  // State
-  const [data, setData] = useState(null);
+  // States
   const [ventas, setVentas] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedVenta, setSelectedVenta] = useState(null);
+  // const [selectedVenta, setSelectedVenta] = useState(null);
 
-  const handleFormToggle = () => {
+  const handleSellFormToggle = () => {
     setSellFormOpen((prevState) => !prevState);
   };
 
@@ -39,7 +39,6 @@ function RegisterPage() {
 
         const result = await response.json();
         setVentas(result);
-        console.log(result);
       } catch (error) {
         setError(`Error: ${error}`);
       } finally {
@@ -50,25 +49,16 @@ function RegisterPage() {
     fetchVentas();
   }, []);
 
-  const handlePrintClick = (venta) => {
-    setSelectedVenta(venta);
-  };
+  // const handlePrintClick = (venta) => {
+  //   setSelectedVenta(venta);
+  // };
 
   return (
-    <section className="w-full overflow-x-hidden">
+    <section className="h-screen w-full overflow-x-hidden">
       {sellFormOpen && <SellForm />}
 
-      <div className="mx-auto overflow-x-hidden">
-        <header className="relative z-20 flex justify-center items-center pt-3 pb-2 mb-3 border-b border-gray-300 bg-[#212529] text-white">
-          <nav className="flex justify-center items-center space-x-5">
-            <p className="text-xl font-semibold uppercase cursor-pointer">
-              Insertar
-            </p>
-            <p className="text-xl font-semibold uppercase cursor-pointer">
-              Status
-            </p>
-          </nav>
-        </header>
+      <div className="h-full w-full overflow-x-hidden flex px-3">
+        <MenuDashboard />
 
         <main className="w-[95%] mx-auto overflow-x-hidden">
           <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
@@ -76,7 +66,7 @@ function RegisterPage() {
               Dashboard {empresa}
             </h1>
             <button
-              onClick={handleFormToggle}
+              onClick={handleSellFormToggle}
               className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 capitalize"
             >
               <svg

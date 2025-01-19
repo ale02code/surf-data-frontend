@@ -11,7 +11,8 @@ export default {
         'blue-normal': '#1664ab',
         'blue-light': '#a8dae7',
         'black-back': '#000000b2',
-        'white-back': '#ffffffb2'
+        'white-back': '#ffffffb2',
+        'carbon-blue': '#212529',
       },
 
       fontFamily: {
