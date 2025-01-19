@@ -5,6 +5,10 @@ import SellForm from "../components/SellForm";
 import PrinterButton from "../components/PrinterButton";
 import MenuDashboard from "../components/MenuDashboard";
 
+// Icons
+import plusIcon from "../assets/icons/dashboard-icons/plus.svg";
+import cloudIcon from "../assets/icons/dashboard-icons/cloud.svg";
+
 function RegisterPage() {
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -60,25 +64,54 @@ function RegisterPage() {
       <div className="h-full w-full overflow-x-hidden flex px-3">
         <MenuDashboard />
 
-        <main className="w-[95%] mx-auto overflow-x-hidden">
+        <main className="w-full overflow-hidden px-5 mt-6">
           <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
-            <h1 className="text-2xl font-bold capitalize">
-              Dashboard {empresa}
-            </h1>
-            <button
-              onClick={handleSellFormToggle}
-              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 capitalize"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+            <hgroup>
+              <h1 className="text-2xl font-bold capitalize">
+                Dashboard - {empresa}
+              </h1>
+              <h3 className="text-neutral-700">
+                Administra facilmente las ventas de tu negocio.
+              </h3>
+            </hgroup>
+            <div className=" flex gap-2 items-center">
+              <button className="text-carbon-blue flex items-center gap-2 border border-carbon-blue px-4 py-2 rounded">
+                <img className="h-6" src={cloudIcon} alt="download icon" />
+                Descargar ventas
+              </button>
+              <button
+                onClick={handleSellFormToggle}
+                className="text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold"
               >
-                <path d="M3 6h18v12H3V6zm16 4H5v4h14v-4zm-2 0H7v2h10v-2zm-4 4h4v2h-4v-2zm-4 0h2v2H7v-2z" />
-              </svg>
-              New Sale
-            </button>
+                <img className="h-5" src={plusIcon} alt="plus Icon" />
+                Añadir venta
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-between gap-8 my-8">
+            {/*TODO: convert to component */}
+
+            {/* <div className="px-7 py-5 border border-gray-300 w-56 h-36">
+              <img src="" alt="Ventas totales icon" />
+              <strong className="text-3xl">{ventas.length}</strong>
+              <p className="text-base">Ventas en total</p>
+            </div>
+            <div className="px-7 py-5 border border-gray-300 w-56 h-36">
+              <img src="" alt="Devoluciones totales icon" />
+              <strong className="text-3xl">2</strong>
+              <p className="text-base">Devoluciones en total</p>
+            </div>
+            <div className="px-7 py-5 border border-gray-300 w-56 h-36">
+              <img src="" alt="Productos totales icon" />
+              <strong className="text-3xl">30</strong>
+              <p className="text-base">Productos en total</p>
+            </div>
+            <div className="px-7 py-5 border border-gray-300 w-56 h-36">
+              <img src="" alt="Ganancias totales icon" />
+              <strong className="text-3xl">21</strong>
+              <p className="text-base">Ganancias en total</p>
+            </div> */}
           </div>
 
           {loadingData ? (
