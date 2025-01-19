@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import PrinterIcon from "../assets/icons/printer.png";
+import { useEffect } from "react";
+import PrinterIcon from "../assets/icons/dashboard-icons/printer.svg";
 
 const PrinterButton = ({ venta = [] }) => {
   const today = new Date();
@@ -76,12 +76,8 @@ const PrinterButton = ({ venta = [] }) => {
   };
 
   return (
-    <button
-      onClick={handlePrint}
-      aria-label={`Imprimir venta con ID ${venta.id}`}
-    >
-      <img src={PrinterIcon} alt="Imprimir" className="w-auto flex gap-2" />
-      Print
+    <button className="border border-gray-300" onClick={handlePrint}>
+      <img className="h-8" src={PrinterIcon} alt="Imprimir" />
     </button>
   );
 };
