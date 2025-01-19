@@ -1,61 +1,34 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
-import { SellFormContext } from "../context/SellFormContext";
-import SellForm from "../components/SellForm";
-import PrinterButton from "../components/PrinterButton";
-import MenuDashboard from "../components/MenuDashboard";
+import { useContext } from "react";
 
-// Icons
+// Contexts imports
+import { SalesControlContext } from "../context/SalesControlContext";
+import { SellFormContext } from "../context/SellFormContext";
+
+import { useParams } from "react-router-dom";
+import MenuDashboard from "../components/MenuDashboard";
+import SellForm from "../components/SellForm";
+import InfoCard from "../components/InfoCard";
+
+// Icons imports
 import plusIcon from "../assets/icons/dashboard-icons/plus.svg";
 import cloudIcon from "../assets/icons/dashboard-icons/cloud.svg";
+import shoppingCartIcon from "../assets/icons/dashboard-icons/shopping-cart.svg";
+import returnIcon from "../assets/icons/dashboard-icons/return.svg";
+import productsIcon from "../assets/icons/dashboard-icons/products.svg";
+import moneyIcon from "../assets/icons/dashboard-icons/money.svg";
+import TableSales from "../components/TableSales";
 
 function RegisterPage() {
-  const API_URL = import.meta.env.VITE_API_URL;
-
   // Contexts
   const { sellFormOpen, setSellFormOpen } = useContext(SellFormContext);
+  const { sales } = useContext(SalesControlContext);
 
   // Params
   const { empresa } = useParams();
 
-  // States
-  const [ventas, setVentas] = useState([]);
-  const [loadingData, setLoadingData] = useState(true);
-  const [error, setError] = useState(null);
-  // const [selectedVenta, setSelectedVenta] = useState(null);
-
   const handleSellFormToggle = () => {
     setSellFormOpen((prevState) => !prevState);
   };
-
-  const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    const fetchVentas = async () => {
-      try {
-        const response = await fetch(API_URL + "/sales", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) throw new Error("Failed to fetch ventas data");
-
-        const result = await response.json();
-        setVentas(result);
-      } catch (error) {
-        setError(`Error: ${error}`);
-      } finally {
-        setLoadingData(false);
-      }
-    };
-
-    fetchVentas();
-  }, []);
-
-  // const handlePrintClick = (venta) => {
-  //   setSelectedVenta(venta);
-  // };
 
   return (
     <section className="h-screen w-full overflow-x-hidden">
@@ -90,94 +63,28 @@ function RegisterPage() {
           </div>
 
           <div className="flex flex-wrap justify-between gap-8 my-8">
-            {/*TODO: convert to component */}
-
-            {/* <div className="px-7 py-5 border border-gray-300 w-56 h-36">
-              <img src="" alt="Ventas totales icon" />
-              <strong className="text-3xl">{ventas.length}</strong>
-              <p className="text-base">Ventas en total</p>
-            </div>
-            <div className="px-7 py-5 border border-gray-300 w-56 h-36">
-              <img src="" alt="Devoluciones totales icon" />
-              <strong className="text-3xl">2</strong>
-              <p className="text-base">Devoluciones en total</p>
-            </div>
-            <div className="px-7 py-5 border border-gray-300 w-56 h-36">
-              <img src="" alt="Productos totales icon" />
-              <strong className="text-3xl">30</strong>
-              <p className="text-base">Productos en total</p>
-            </div>
-            <div className="px-7 py-5 border border-gray-300 w-56 h-36">
-              <img src="" alt="Ganancias totales icon" />
-              <strong className="text-3xl">21</strong>
-              <p className="text-base">Ganancias en total</p>
-            </div> */}
+            <InfoCard
+              src={shoppingCartIcon}
+              qua={sales.length}
+              label="Ventas en total"
+            />
+            <InfoCard
+              src={returnIcon}
+              qua={sales.length}
+              label="Devoluciones en total"
+            />
+            <InfoCard
+              src={productsIcon}
+              qua={sales.length}
+              label="Productos en total"
+            />
+            <InfoCard
+              src={moneyIcon}
+              qua={sales.length}
+              label="Ganancias en total"
+            />
           </div>
-
-          {loadingData ? (
-            <p className="text-center text-gray-500">Loading...</p>
-          ) : error ? (
-            <p className="text-center text-red-500">{error}</p>
-          ) : (
-            <>
-              <h2 className="text-xl font-semibold mb-4">
-                Ventas Totales: {ventas.length}
-              </h2>
-
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200 overflow-hidden">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      {[
-                        "#",
-                        "Producto",
-                        "Precio Unitario",
-                        "Cantidad",
-                        "Opciones",
-                      ].map((header) => (
-                        <th
-                          key={header}
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          {header}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody
-                    className="bg-white divide-y divide-gray-200"
-                    style={{ width: "100%", tableLayout: "fixed" }}
-                  >
-                    {ventas.map((venta, index) => (
-                      <tr key={venta.id}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {index + 1}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {venta.producto}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {venta.precio}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {venta.cantidad}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap flex items-center gap-3 w-[220px]">
-                          <button
-                            onClick={() => console.log(`Edit ${venta.id}`)}
-                            className="bg-sky-400 text-white font-semibold py-2 px-10 rounded-lg"
-                          >
-                            Edit
-                          </button>
-                          <PrinterButton venta={venta} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )}
+          <TableSales />
         </main>
       </div>
     </section>
