@@ -69,7 +69,7 @@ function RegisterPage() {
                 Administra facilmente las ventas de tu negocio.
               </h3>
             </hgroup>
-            <div className=" flex gap-2 items-center">
+            <div className="flex gap-2 items-center">
               <button className="text-carbon-blue flex items-center gap-2 border border-carbon-blue px-4 py-2 rounded">
                 <img className="h-6" src={cloudIcon} alt="download icon" />
                 Descargar ventas

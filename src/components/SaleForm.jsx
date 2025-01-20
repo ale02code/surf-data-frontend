@@ -13,8 +13,17 @@ function SaleForm() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    console.log(empresa);
+    console.log(normalizedEmpresa);
   }, []);
+
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      tableName: normalizedEmpresa,
+    }));
+
+    console.log(normalizedEmpresa);
+  }, [normalizedEmpresa, setFormData]);
 
   const handleSaleForm = async (e) => {
     e.preventDefault();
@@ -22,25 +31,21 @@ function SaleForm() {
     setSellFormOpen(false);
 
     try {
-      const response = await fetch(
-        API_URL + `/${normalizedEmpresa}/dashboard/sale`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(API_URL + "/newSale", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       await response.json();
       alert("Venta creada con éxito");
 
       setFormData({
         producto: "",
-        precio: "",
-        cantidad: "",
-        estado: "",
+        precio: 0,
+        cantidad: 1,
       });
     } catch (error) {
       alert(`Error al crear la venta: ${error.message}`);
