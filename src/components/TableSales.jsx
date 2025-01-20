@@ -92,7 +92,7 @@ function TableSales() {
       </header>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-gray-200 border border-gray-300 overflow-hidden">
+        <table className="min-w-full divide-gray-200 border border-gray-300 mb-5">
           <thead className="bg-gray-100">
             <tr>
               {headers.map((header, index) => (

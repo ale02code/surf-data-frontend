@@ -59,7 +59,7 @@ function RegisterPage() {
       <div className="h-full w-full overflow-x-hidden flex px-3">
         <MenuDashboard />
 
-        <main className="w-full overflow-hidden px-6 mt-6">
+        <main className="w-full overflow-auto px-6 mt-6">
           <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
             <hgroup>
               <h1 className="text-2xl font-bold capitalize">
@@ -84,7 +84,7 @@ function RegisterPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-between gap-8 my-8">
+          <div className="flex flex-wrap justify-between gap-8 my-8 h-auto">
             <InfoCard
               src={shoppingCartIcon}
               qua={sales.length}

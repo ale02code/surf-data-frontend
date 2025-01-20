@@ -58,7 +58,7 @@ function SaleForm() {
   };
 
   return (
-    <section className="w-screen h-screen fixed z-50 top-0 left-0 flex justify-center items-center">
+    <section className="w-screen h-screen fixed z-50 top-0 left-0 flex justify-center items-center mb-5">
       <div
         className="absolute inset-0 bg-black bg-opacity-50"
         onClick={() => setSellFormOpen(false)}
