@@ -97,19 +97,6 @@ function SaleForm() {
               onChange={handleInputChange}
             />
           </div>
-          {/* <label htmlFor=""></label>
-          <select
-            className="w-full p-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-900 outline-none"
-            name=""
-            id="status"
-          >
-            <option className="text-black" value="False">
-              False
-            </option>
-            <option className="text-black" value="True">
-              True
-            </option>
-          </select> */}
           <button
             type="submit"
             className="bg-indigo-500 text-white p-4 rounded-lg uppercase text-xl"

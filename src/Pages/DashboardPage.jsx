@@ -6,7 +6,7 @@ import { SellFormContext } from "../context/SellFormContext";
 
 import { useParams } from "react-router-dom";
 import MenuDashboard from "../components/MenuDashboard";
-import SaleForm from "../components/saleForm";
+import SaleForm from "../components/SaleForm";
 import InfoCard from "../components/InfoCard";
 
 // Icons imports
