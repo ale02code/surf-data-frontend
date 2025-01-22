@@ -73,8 +73,13 @@ function TableSales() {
         <h2 className="text-xl font-semibold">Todas las ventas</h2>
         <div className="flex items-center gap-2">
           <form className="flex gap-2 border border-gray-300 py-1 px-2 rounded cursor-pointer">
-            <label htmlFor="search-sale">
-              <img className="h-6" src={lensIcon} alt="lens icon" />
+            <label htmlFor="search-sale" className="cursor-pointer">
+              <img
+                className="h-6"
+                src={lensIcon}
+                alt="lens icon"
+                draggable="false"
+              />
             </label>
             <input
               className="outline-none"

@@ -99,7 +99,7 @@ function SaleForm() {
           </div>
           <button
             type="submit"
-            className="bg-indigo-500 text-white p-4 rounded-lg uppercase text-xl"
+            className="bg-indigo-500 text-white px-4 py-2 rounded-lg uppercase text-xl hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50"
           >
             Generar Venta
           </button>
