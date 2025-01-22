@@ -114,7 +114,7 @@ function SalesDashboardView() {
   };
 
   return (
-    <main className="w-full min-h-screen overflow-y-hidden px-6 mt-3">
+    <main className="overflow-y-hidden px-5 mt-3">
       {saleFormOpen && <SaleForm />}
       <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
         <hgroup>

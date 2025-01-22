@@ -24,9 +24,9 @@ function MenuDashboard() {
   };
 
   return (
-    <header className="h-full w-56 overflow-hidden">
-      <div className="h-full flex flex-col justify-between fixed">
-        <nav className="h-full flex flex-col justify-between bg-gray-100 text-white p-4 overflow-hidden border-r border-gray-300">
+    <header className="h-full w-64 fixed top-0 left-0 z-[100] bg-gray-100 border-r border-gray-300">
+      <div className="h-full w-full flex flex-col justify-between">
+        <nav className="h-full flex flex-col justify-between bg-gray-100 text-white p-4">
           <section>
             <div className="text-lg font-semibold">
               <div className="mt-2 mb-5">

@@ -9,11 +9,13 @@ function RegisterPage() {
   const currentDashboardView = useDashboardView();
 
   return (
-    <section className="h-screen w-full overflow-x-hidden">
-      <div className="h-full w-full overflow-x-hidden flex px-3">
+    <section className="h-screen w-full overflow-x-hidden flex">
+      <div className="ml-64 flex-1">
         <MenuDashboard />
 
-        {currentDashboardView}
+        <div className="w-full min-h-screen">
+          {currentDashboardView}
+        </div>
       </div>
     </section>
   );

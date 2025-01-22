@@ -1,5 +1,5 @@
 function ReportsDashboardView() {
-  return <div>ReportsDashboard</div>;
+  return <div className="overflow-y-hidden px-5 mt-3">ReportsDashboard</div>;
 }
 
 export default ReportsDashboardView;
