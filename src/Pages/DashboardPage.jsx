@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 // Contexts imports
 import { SalesControlContext } from "../context/SalesControlContext";
-import { SellFormContext } from "../context/SellFormContext";
+import { SaleFormContext } from "../context/SaleFormContext";
 
 import { useParams } from "react-router-dom";
 import MenuDashboard from "../components/MenuDashboard";
@@ -20,14 +20,14 @@ import TableSales from "../components/TableSales";
 
 function RegisterPage() {
   // Contexts
-  const { sellFormOpen, setSellFormOpen } = useContext(SellFormContext);
+  const { saleFormOpen, setSaleFormOpen } = useContext(SaleFormContext);
   const { sales } = useContext(SalesControlContext);
 
   // Params
   const { empresa } = useParams();
 
-  const handleSellFormToggle = () => {
-    setSellFormOpen((prevState) => !prevState);
+  const handleSaleFormToggle = () => {
+    setSaleFormOpen((prevState) => !prevState);
   };
 
   const handleCountReturnSales = (sales) => {
@@ -54,7 +54,7 @@ function RegisterPage() {
 
   return (
     <section className="h-screen w-full overflow-x-hidden">
-      {sellFormOpen && <SaleForm />}
+      {saleFormOpen && <SaleForm />}
 
       <div className="h-full w-full overflow-x-hidden flex px-3">
         <MenuDashboard />
@@ -75,7 +75,7 @@ function RegisterPage() {
                 Descargar ventas
               </button>
               <button
-                onClick={handleSellFormToggle}
+                onClick={handleSaleFormToggle}
                 className="text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold"
               >
                 <img className="h-5" src={plusIcon} alt="plus Icon" />

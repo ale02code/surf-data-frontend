@@ -13,7 +13,9 @@ function MenuDashboard() {
     { label: "Configuración", img: settingsIcon },
   ];
 
-  const handleSectionView = (nameSection) => {};
+  const handleSectionView = (nameSection) => {
+    return console.log(nameSection);
+  };
 
   return (
     <header className="h-full min-w-56 relative text-white p-2 overflow-hidden border-r border-gray-300 bg-gray-100">
@@ -29,7 +31,7 @@ function MenuDashboard() {
               <div
                 key={section.label}
                 className="p-2 flex items-center gap-2 mb-1 hover:bg-gray-200 cursor-pointer"
-                onClick={handleSectionView(section.label)}
+                onClick={() => handleSectionView(section.label)}
               >
                 <img src={section.img} alt={section.img + " icon"} />
                 <p className="text-carbon-blue">{section.label}</p>

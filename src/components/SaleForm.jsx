@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { SellFormContext } from "../context/SellFormContext";
+import { SaleFormContext } from "../context/SaleFormContext";
 import { FormDataContext } from "../context/FormDataContext";
 import InputField from "./InputField";
 
 function SaleForm() {
   const { empresa } = useParams();
   const { formData, setFormData } = useContext(FormDataContext);
-  const { setSellFormOpen } = useContext(SellFormContext);
+  const { setSellFormOpen } = useContext(SaleFormContext);
 
   const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "");
   const API_URL = import.meta.env.VITE_API_URL;
