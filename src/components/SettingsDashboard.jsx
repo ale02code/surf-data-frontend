@@ -1,7 +1,5 @@
-import React from "react";
-
-function SettingsDashboard() {
+function SettingsDashboardView() {
   return <div>SettingsDashboard</div>;
 }
 
-export default SettingsDashboard;
+export default SettingsDashboardView;

@@ -1,10 +1,26 @@
 import { useState, useEffect, useContext } from "react";
+
+// context imports
 import { SalesControlContext } from "../context/SalesControlContext";
+import { SaleFormContext } from "../context/SaleFormContext";
+
+// components imports
+import InfoCard from "../components/InfoCard";
+import SaleForm from "../components/SaleForm";
 import PrinterButton from "../components/PrinterButton";
 import LoadingModule from "../components/LoadingModule";
 import ErrorModule from "./ErrorModule";
 
+// params imports
+import { useParams } from "react-router-dom";
+
 // icons imports
+import plusIcon from "../assets/icons/dashboard-icons/plus.svg";
+import cloudIcon from "../assets/icons/dashboard-icons/cloud.svg";
+import shoppingCartIcon from "../assets/icons/dashboard-icons/shopping-cart.svg";
+import returnIcon from "../assets/icons/dashboard-icons/return.svg";
+import productsIcon from "../assets/icons/dashboard-icons/products.svg";
+import moneyIcon from "../assets/icons/dashboard-icons/money.svg";
 import lensIcon from "../assets/icons/dashboard-icons/lens.svg";
 import filterIcon from "../assets/icons/dashboard-icons/filter.svg";
 import pencilIcon from "../assets/icons/dashboard-icons/pencil.svg";
@@ -12,9 +28,13 @@ import pencilIcon from "../assets/icons/dashboard-icons/pencil.svg";
 const API_URL = import.meta.env.VITE_API_URL;
 const token = localStorage.getItem("token");
 
-function TableSales() {
+function SalesDashboardView() {
   // Contexts
   const { sales, setSales } = useContext(SalesControlContext);
+  const { saleFormOpen, setSaleFormOpen } = useContext(SaleFormContext);
+
+  // Params
+  const { empresa } = useParams();
 
   // States
   const [loadingData, setLoadingData] = useState(true);
@@ -67,8 +87,82 @@ function TableSales() {
     return <ErrorModule msg={error} />;
   }
 
+  const handleSaleFormToggle = () => {
+    setSaleFormOpen((prevState) => !prevState);
+  };
+
+  const handleCountReturnSales = (sales) => {
+    const count = sales.filter((sale) => !sale.estado).length;
+    return count;
+  };
+
+  const handleCountProducts = (sales) => {
+    const count = sales.reduce((acc, sales) => acc + sales.cantidad, 0);
+    return count;
+  };
+
+  const handleCountProfit = (sales) => {
+    const totalProfit = sales.reduce((acc, sale) => {
+      const cleanedPrice = sale.precio.replace(/[^\d.-]/g, "");
+      const price = parseFloat(cleanedPrice);
+      const qua = parseInt(sale.cantidad, 10);
+
+      return acc + price * qua;
+    }, 0);
+
+    return `$${totalProfit}`;
+  };
+
   return (
-    <>
+    <main className="w-full min-h-screen overflow-auto px-6 mt-6">
+      {saleFormOpen && <SaleForm />}
+      <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
+        <hgroup>
+          <h1 className="text-2xl font-bold capitalize">
+            Dashboard - {empresa}
+          </h1>
+          <h3 className="text-neutral-700">
+            Administra facilmente las ventas de tu negocio.
+          </h3>
+        </hgroup>
+        <div className="flex gap-2 items-center">
+          <button className="text-carbon-blue flex items-center gap-2 border border-carbon-blue px-4 py-2 rounded">
+            <img className="h-6" src={cloudIcon} alt="download icon" />
+            Descargar ventas
+          </button>
+          <button
+            onClick={handleSaleFormToggle}
+            className="text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold"
+          >
+            <img className="h-5" src={plusIcon} alt="plus Icon" />
+            Añadir venta
+          </button>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap justify-between gap-8 my-8 h-auto">
+        <InfoCard
+          src={shoppingCartIcon}
+          qua={sales.length}
+          label="Ventas en total"
+        />
+        <InfoCard
+          src={returnIcon}
+          qua={handleCountReturnSales(sales)}
+          label="Devoluciones en total"
+        />
+        <InfoCard
+          src={productsIcon}
+          qua={handleCountProducts(sales)}
+          label="Productos en total"
+        />
+        <InfoCard
+          src={moneyIcon}
+          qua={handleCountProfit(sales)}
+          label="Ganancias en total"
+        />
+      </div>
+
       <header className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">Todas las ventas</h2>
         <div className="flex items-center gap-2">
@@ -142,8 +236,8 @@ function TableSales() {
           </tbody>
         </table>
       </div>
-    </>
+    </main>
   );
 }
 
-export default TableSales;
+export default SalesDashboardView;
