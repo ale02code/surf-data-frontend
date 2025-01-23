@@ -6,6 +6,7 @@ import { SearchProductContext } from "../context/SearchProductContext";
 
 // hooks imports
 import useFilterSales from "../hooks/useFilterSales";
+import useGetTotals from "../hooks/useGetTotals";
 
 // params imports
 import { useParams } from "react-router-dom";
@@ -35,6 +36,8 @@ function SalesDashboardView() {
 
   //hooks
   const { filteredSales, loadingData, error } = useFilterSales();
+  const { handleCountReturnSales, handleCountProducts, handleCountProfit } =
+    useGetTotals();
 
   // Params
   const { empresa } = useParams();
@@ -63,28 +66,6 @@ function SalesDashboardView() {
 
   const handleSaleFormToggle = () => {
     setSaleFormOpen((prevState) => !prevState);
-  };
-
-  const handleCountReturnSales = (filteredSales) => {
-    const count = filteredSales.filter((sale) => !sale.estado).length;
-    return count;
-  };
-
-  const handleCountProducts = (filteredSales) => {
-    const count = filteredSales.reduce((acc, sale) => acc + sale.cantidad, 0);
-    return count;
-  };
-
-  const handleCountProfit = (filteredSales) => {
-    const totalProfit = filteredSales.reduce((acc, sale) => {
-      const cleanedPrice = sale.precio.replace(/[^\d.-]/g, "");
-      const price = parseFloat(cleanedPrice);
-      const qua = parseInt(sale.cantidad, 10);
-
-      return acc + price * qua;
-    }, 0);
-
-    return `$${totalProfit}`;
   };
 
   const handleSubmit = (e) => {
