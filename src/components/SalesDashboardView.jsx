@@ -1,8 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 
 // context imports
-import { SalesControlContext } from "../context/SalesControlContext";
 import { SaleFormContext } from "../context/SaleFormContext";
+import { SearchProductContext } from "../context/SearchProductContext";
+
+// hooks imports
+import useFilterSales from "../hooks/useFilterSales";
+
+// params imports
+import { useParams } from "react-router-dom";
 
 // components imports
 import InfoCard from "../components/InfoCard";
@@ -10,9 +16,6 @@ import SaleForm from "../components/SaleForm";
 import PrinterButton from "../components/PrinterButton";
 import LoadingModule from "../components/LoadingModule";
 import ErrorModule from "./ErrorModule";
-
-// params imports
-import { useParams } from "react-router-dom";
 
 // icons imports
 import plusIcon from "../assets/icons/dashboard-icons/plus.svg";
@@ -25,45 +28,16 @@ import lensIcon from "../assets/icons/dashboard-icons/lens.svg";
 import filterIcon from "../assets/icons/dashboard-icons/filter.svg";
 import pencilIcon from "../assets/icons/dashboard-icons/pencil.svg";
 
-const API_URL = import.meta.env.VITE_API_URL;
-const token = localStorage.getItem("token");
-
 function SalesDashboardView() {
   // Contexts
-  const { sales, setSales } = useContext(SalesControlContext);
   const { saleFormOpen, setSaleFormOpen } = useContext(SaleFormContext);
+  const { searchProduct, setSearchProduct } = useContext(SearchProductContext);
+
+  //hooks
+  const { filteredSales, loadingData, error } = useFilterSales();
 
   // Params
   const { empresa } = useParams();
-
-  // States
-  const [loadingData, setLoadingData] = useState(true);
-  const [error, setError] = useState(false);
-
-  // Fetch sales data
-  useEffect(() => {
-    const fetchVentas = async () => {
-      try {
-        const response = await fetch(`${API_URL}/sales`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) throw new Error("Error al obtener datos de ventas");
-
-        const result = await response.json();
-        setSales(result);
-      } catch (e) {
-        console.error(e);
-        setError("Hubo un problema al cargar las ventas. Intenta nuevamente.");
-      } finally {
-        setLoadingData(false);
-      }
-    };
-
-    fetchVentas();
-  }, [setSales]);
 
   // Handle sales status
   const handleStatus = (status) => {
@@ -91,18 +65,18 @@ function SalesDashboardView() {
     setSaleFormOpen((prevState) => !prevState);
   };
 
-  const handleCountReturnSales = (sales) => {
-    const count = sales.filter((sale) => !sale.estado).length;
+  const handleCountReturnSales = (filteredSales) => {
+    const count = filteredSales.filter((sale) => !sale.estado).length;
     return count;
   };
 
-  const handleCountProducts = (sales) => {
-    const count = sales.reduce((acc, sales) => acc + sales.cantidad, 0);
+  const handleCountProducts = (filteredSales) => {
+    const count = filteredSales.reduce((acc, sale) => acc + sale.cantidad, 0);
     return count;
   };
 
-  const handleCountProfit = (sales) => {
-    const totalProfit = sales.reduce((acc, sale) => {
+  const handleCountProfit = (filteredSales) => {
+    const totalProfit = filteredSales.reduce((acc, sale) => {
       const cleanedPrice = sale.precio.replace(/[^\d.-]/g, "");
       const price = parseFloat(cleanedPrice);
       const qua = parseInt(sale.cantidad, 10);
@@ -111,6 +85,15 @@ function SalesDashboardView() {
     }, 0);
 
     return `$${totalProfit}`;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleSearchProduct = (searchValue) => {
+    setSearchProduct(searchValue);
+    console.log(searchProduct);
   };
 
   return (
@@ -143,22 +126,22 @@ function SalesDashboardView() {
       <div className="flex flex-wrap justify-between gap-8 my-8 h-auto">
         <InfoCard
           src={shoppingCartIcon}
-          qua={sales.length}
+          qua={filteredSales.length}
           label="Ventas en total"
         />
         <InfoCard
           src={returnIcon}
-          qua={handleCountReturnSales(sales)}
+          qua={handleCountReturnSales(filteredSales)}
           label="Devoluciones en total"
         />
         <InfoCard
           src={productsIcon}
-          qua={handleCountProducts(sales)}
+          qua={handleCountProducts(filteredSales)}
           label="Productos en total"
         />
         <InfoCard
           src={moneyIcon}
-          qua={handleCountProfit(sales)}
+          qua={handleCountProfit(filteredSales)}
           label="Ganancias en total"
         />
       </div>
@@ -166,7 +149,10 @@ function SalesDashboardView() {
       <header className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold">Todas las ventas</h2>
         <div className="flex items-center gap-2">
-          <form className="flex gap-2 border border-gray-300 py-1 px-2 rounded cursor-pointer">
+          <form
+            onSubmit={handleSubmit}
+            className="flex gap-2 border border-gray-300 py-1 px-2 rounded cursor-pointer"
+          >
             <label htmlFor="search-sale" className="cursor-pointer">
               <img
                 className="h-6"
@@ -180,7 +166,8 @@ function SalesDashboardView() {
               type="text"
               name="search-sale"
               id="search-sale"
-              placeholder="Buscar venta..."
+              placeholder="Buscar producto..."
+              onChange={(e) => handleSearchProduct(e.target.value)}
             />
           </form>
           <div className="flex items-center gap-2 border border-gray-300 py-1 px-2 rounded cursor-pointer">
@@ -205,7 +192,7 @@ function SalesDashboardView() {
             </tr>
           </thead>
           <tbody className="bg-white divide-gray-200">
-            {sales.map((sale, index) => (
+            {filteredSales.map((sale, index) => (
               <tr
                 className="border border-gray-300 overflow-hidden text-center"
                 key={sale.id}
