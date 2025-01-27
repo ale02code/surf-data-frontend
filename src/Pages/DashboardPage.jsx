@@ -13,7 +13,7 @@ function RegisterPage() {
 
   return (
     <section className="h-screen w-full overflow-x-hidden flex">
-      <div className="ml-60 flex-1">
+      <div className="ml-64 flex-1">
         <MenuDashboard />
 
         <div className="w-full min-h-screen">
