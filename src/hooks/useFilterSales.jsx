@@ -1,20 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // context imports
 import { SalesControlContext } from "../context/SalesControlContext";
 import { SearchProductContext } from "../context/SearchProductContext";
-
-// params imports
-// import { useParams } from "react-router-dom";
-
-const API_URL = import.meta.env.VITE_API_URL;
-const token = localStorage.getItem("token");
+import { apiService } from "../services/apiService";
 
 function useFilterSales() {
   // Contexts
   const { sales, setSales } = useContext(SalesControlContext);
   const { searchProduct } = useContext(SearchProductContext);
 
+  // States
+  const [loadingData, setLoadingData] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const getSales = async () => {
+      setLoadingData(true);
+
+      const { data, error } = await apiService();
+
+      if (error) {
+        setLoadingData(false);
+        return setError(error);
+      } else {
+        setLoadingData(false);
+        return setSales(data);
+      }
+    };
+
+    getSales();
+  }, [setSales]);
 
   const filteredSales =
     searchProduct.trim() === ""
