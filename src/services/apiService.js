@@ -7,7 +7,7 @@ export async function apiService() {
   }
 
   try {
-    const response = await fetch(`${API_URL}/saless`, {
+    const response = await fetch(`${API_URL}/sales`, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       },

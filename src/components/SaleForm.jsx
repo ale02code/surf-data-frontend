@@ -7,28 +7,22 @@ import InputField from "./InputField";
 function SaleForm() {
   const { empresa } = useParams();
   const { formData, setFormData } = useContext(FormDataContext);
-  const { setSellFormOpen } = useContext(SaleFormContext);
+  const { setSaleFormOpen } = useContext(SaleFormContext);
 
   const normalizedEmpresa = empresa.toLowerCase().replace(/ /g, "");
   const API_URL = import.meta.env.VITE_API_URL;
-
-  useEffect(() => {
-    console.log(normalizedEmpresa);
-  }, []);
 
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
       tableName: normalizedEmpresa,
     }));
-
-    console.log(normalizedEmpresa);
   }, [normalizedEmpresa, setFormData]);
 
-  const handleSaleForm = async (e) => {
+  const handleCreateSale = async (e) => {
     e.preventDefault();
     console.log(formData);
-    setSellFormOpen(false);
+    setSaleFormOpen(false);
 
     try {
       const response = await fetch(API_URL + "/newSale", {
@@ -58,14 +52,14 @@ function SaleForm() {
   };
 
   return (
-    <section className="w-screen h-screen fixed z-50 top-0 left-0 flex justify-center items-center mb-5">
+    <section className="min-h-screen w-full absolute inset-0 flex justify-center items-center overflow-hidden pl-64">
       <div
-        className="absolute inset-0 bg-black bg-opacity-50"
-        onClick={() => setSellFormOpen(false)}
+        className="h-full w-full absolute z-20 right-0 top-0 bg-black bg-opacity-50"
+        onClick={() => setSaleFormOpen(false)}
       ></div>
-      <div className="relative z-20 w-[95%] max-w-md bg-[#212529] p-6 rounded-lg">
+      <div className="absolute z-20 w-full max-w-md bg-[#212529] p-6 rounded-lg">
         <form
-          onSubmit={handleSaleForm}
+          onSubmit={handleCreateSale}
           className="flex flex-col gap-4 text-white"
         >
           <h6 className="text-3xl uppercase font-bold text-center">
@@ -82,7 +76,7 @@ function SaleForm() {
           <div className="flex gap-3">
             <InputField
               label="Precio"
-              type="number"
+              type="text"
               id="precio"
               name="precio"
               placeholder="0.00"
