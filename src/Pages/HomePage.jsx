@@ -83,12 +83,12 @@ function HomePage() {
         <header
           className={
             menu
-              ? "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-full max-md:w-full max-md:z-40 max-md:right-0 max-md:fixed"
-              : "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-max max-md:w-max max-md:p-16 max-md:z-40 max-md:right-0 max-md:hidden"
+              ? "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-full max-md:w-full max-md:z-40 max-md:right-0 max-md:fixed border-b border-gray-300"
+              : "h-20 w-full absolute top-0 backdrop-blur-2xl text-xl text-black max-md:text-white max-md:bg-neutral-900 max-md:h-max max-md:w-max max-md:p-16 max-md:z-40 max-md:right-0 max-md:hidden border-b border-gray-300"
           }
         >
           <div className="flex justify-between items-center w-4/5 h-full m-auto max-md:w-full max-md:relative">
-            <nav className="flex w-full h-full justify-between items-center capitalize font-extrabold font-agrandir max-md:flex-col max-md:justify-center max-md:items-center max-md:text-4xl">
+            <nav className="flex w-full h-full justify-between items-center capitalize font-bold font-linter max-md:flex-col max-md:justify-center max-md:items-center max-md:text-4xl">
               <div className="flex justify-center items-center space-x-6 max-md:flex-col max-md:space-x-0 max-md:space-y-6 max-md:mb-7">
                 <p className="hover:cursor-pointer hover:underline">Inicio</p>
                 <p className="hover:cursor-pointer hover:underline">
@@ -131,20 +131,27 @@ function HomePage() {
         <div className="h-full w-full mb-32 max-md:mb-0">
           <div className="h-16 shadow-md flex justify-between items-center max-md:h-28">
             <div className="flex justify-between items-center w-4/5 m-auto">
-              <h5 className="font-agrandir uppercase font-bold text-xl max-md:text-lg">
+              <h5 className="font-linter uppercase font-bold text-xl max-md:text-lg">
                 Empresas colaboradoras y partners
               </h5>
               <div className="h-full flex justify-center items-center gap-2 overflow-hidden max-md:flex-wrap">
-                <img className="h-20 max-md:h-8" src={OracleImg} alt="Oracle" />
+                <img
+                  className="h-20 max-md:h-8"
+                  src={OracleImg}
+                  alt="Oracle"
+                  draggable="false"
+                />
                 <img
                   className="h-10 max-md:h-8"
                   src={GoogleAnalyticsImg}
                   alt="GoogleAnalytics"
+                  draggable="false"
                 />
                 <img
                   className="h-10 max-md:h-8"
                   src={HubspotImg}
                   alt="Hubspot"
+                  draggable="false"
                 />
                 <img className="h-20 max-md:h-8" src={IBMImg} alt="IBM" />
               </div>
@@ -188,7 +195,7 @@ function HomePage() {
         <section className="h-72 bg-gray-800 flex justify-center items-center max-md:h-max max-md:py-6">
           <div className="w-4/5 text-white m-auto overflow-hidden flex justify-evenly items-center flex-wrap">
             <article className="w-3/6 max-md:w-full overflow-hidden">
-              <h3 className="text-3xl font-bold font-agrandir capitalize max-md:text-center">
+              <h3 className="text-3xl font-bold font-linter capitalize max-md:text-center">
                 Conoce de Surf Data!
               </h3>
               <p className="text-lg text-neutral-100 mb-4 max-md:text-justify">
@@ -220,6 +227,7 @@ function HomePage() {
                 className="h-full object-cover animation-balance"
                 src={OctopusImg}
                 alt="Octopus Image"
+                draggable="false"
               />
             </div>
           </div>
@@ -247,6 +255,7 @@ function HomePage() {
                 "Actualizaciones periódicas garantizadas.",
               ]}
               price="3,99"
+              draggable="false"
             />
             <ServiceCard
               color="yellow"
@@ -260,6 +269,7 @@ function HomePage() {
                 "Soporte dedicado y rápido.",
               ]}
               price="8,99"
+              draggable="false"
             />
             <ServiceCard
               color="green"
@@ -273,6 +283,7 @@ function HomePage() {
                 "Soporte premium disponible 24/7.",
               ]}
               price="6,99"
+              draggable="false"
             />
           </div>
         </div>
@@ -285,6 +296,7 @@ function HomePage() {
             className="overflow-hidden h-max w-full object-cover"
             src={WaveImg}
             alt="Wave"
+            draggable="false"
           />
           <section className="h-64 w-full bg-sky-950 pb-2 text-white max-md:h-auto max-md:pb-5">
             <div className="h-full flex justify-center items-start w-4/5 gap-8 m-auto overflow-hidden max-md:flex-col">
@@ -293,6 +305,7 @@ function HomePage() {
                   className="h-full w-max object-contain max-md:w-full"
                   src={MacImg}
                   alt="Mac Picture"
+                  draggable="false"
                 />
               </div>
               <div className="w-1/2 flex flex-col justify-evenly gap-6 h-full max-md:w-full">
@@ -309,18 +322,24 @@ function HomePage() {
                 </form>
                 <div className="w-full flex justify-around items-start">
                   <div className="max-md:text-center">
-                    <h6 className="mb-2 font-bold text-2xl">Alliance</h6>
+                    <h6 className="mb-2 font-semibold text-2xl font-linter">
+                      Alliance
+                    </h6>
                     <p>Websites</p>
                     <p>Social Media</p>
                     <p>Branding</p>
                   </div>
                   <div className="max-md:text-center">
-                    <h6 className="mb-2 font-bold text-2xl">About</h6>
+                    <h6 className="mb-2 font-semibold text-2xl font-linter">
+                      About
+                    </h6>
                     <p>Our projects</p>
                     <p>Careers</p>
                   </div>
                   <div className="max-md:text-center">
-                    <h6 className="mb-2 font-bold text-2xl">Support</h6>
+                    <h6 className="mb-2 font-semibold text-2xl font-linter">
+                      Support
+                    </h6>
                     <p>Support request</p>
                     <p>Contact</p>
                   </div>
@@ -328,7 +347,7 @@ function HomePage() {
                 <div className="w-full flex flex-col justify-between items-center text-lg">
                   <span className="w-full h-1 border-b border-neutral-300 mb-2" />
                   <div className="h-8 w-full flex justify-between max-md:mt-1">
-                    <p className="font-bold text-white">
+                    <p className="font-bold text-white font-linter">
                       All rights reserved 2024
                     </p>
                     <div className="flex space-x-2 h-full">
@@ -385,7 +404,7 @@ function HomePage() {
         <p className="text-center text-lg">
           design and develop by
           <a
-            className="font-bold mx-1"
+            className="font-linter font-semibold mx-1"
             href="https://www.instagram.com/ale02.code/"
             target="_BLANK"
             rel="noopener noreferrer"

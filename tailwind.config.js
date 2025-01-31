@@ -6,17 +6,13 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        'blue-dark': '#091425',
-        'blue-normal': '#1664ab',
-        'blue-light': '#a8dae7',
-        'black-back': '#000000b2',
-        'white-back': '#ffffffb2',
-        'carbon-blue': '#212529',
+      fontFamily: {
+        robotoCondensed: ["Roboto Condensed", "sans-serif"],
+        linter: ["Linter", "sans-serif"],
       },
 
-      fontFamily: {
-        'agrandir': 'Agrandir',
+      colors: {
+        'carbon-blue': '#212529',
       },
 
       width: {

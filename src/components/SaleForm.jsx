@@ -76,11 +76,13 @@ function SaleForm() {
           <div className="flex gap-3">
             <InputField
               label="Precio"
-              type="text"
+              type="number"
               id="precio"
               name="precio"
               placeholder="0.00"
               onChange={handleInputChange}
+              step="0.01"
+              min="0"
             />
             <InputField
               label="Cantidad"
@@ -89,6 +91,7 @@ function SaleForm() {
               name="cantidad"
               placeholder="2"
               onChange={handleInputChange}
+              min="1"
             />
           </div>
           <button

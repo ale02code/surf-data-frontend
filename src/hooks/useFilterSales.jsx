@@ -32,16 +32,11 @@ function useFilterSales() {
     getSales();
   }, [setSales]);
 
-  const filteredSales =
-    searchProduct.trim() === ""
-      ? sales
-      : sales.filter(
-          (sale) =>
-            sale.producto &&
-            sale.producto
-              .toLowerCase()
-              .includes(searchProduct.trim().toLowerCase())
-        );
+  const filteredSales = sales
+    .filter((sale) =>
+      sale.producto?.toLowerCase().includes(searchProduct.trim().toLowerCase())
+    )
+    .sort((a, b) => a.precio - b.precio);
 
   return { filteredSales, loadingData, error };
 }

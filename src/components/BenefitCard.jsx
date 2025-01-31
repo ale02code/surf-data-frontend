@@ -1,7 +1,7 @@
 function BenefitCard({ img, title, text }) {
   return (
     <div className="border border-gray-400 px-4 py-2 h-30 w-52 shadow-md hover:scale-110 transition-transform max-md:px-2 max-md:w-40">
-      <img className="h-10 mb-1" src={img} alt="Benefit Image" />
+      <img className="h-10 mb-1" src={img} alt="Benefit Image" draggable="false" />
       <h6 className="text-xl font-bold font-agrandir max-md:text-lg">
         {title}
       </h6>

@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import InfoCard from "../components/InfoCard";
 import SaleForm from "../components/SaleForm";
 import PrinterButton from "../components/PrinterButton";
+import FiltersSection from "./FiltersSection";
 import LoadingModule from "../components/LoadingModule";
 import ErrorModule from "./ErrorModule";
 
@@ -26,7 +27,6 @@ import returnIcon from "../assets/icons/dashboard-icons/return.svg";
 import productsIcon from "../assets/icons/dashboard-icons/products.svg";
 import moneyIcon from "../assets/icons/dashboard-icons/money.svg";
 import lensIcon from "../assets/icons/dashboard-icons/lens.svg";
-import filterIcon from "../assets/icons/dashboard-icons/filter.svg";
 import pencilIcon from "../assets/icons/dashboard-icons/pencil.svg";
 
 function SalesDashboardView() {
@@ -79,9 +79,8 @@ function SalesDashboardView() {
 
   return (
     <div className="overflow-y-hidden">
-
       <main className="px-5 mt-3">
-      <div className="overflow-hidden"> {saleFormOpen && <SaleForm />} </div>
+        <div className="overflow-hidden"> {saleFormOpen && <SaleForm />} </div>
         <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
           <hgroup>
             <h1 className="text-2xl font-bold capitalize">
@@ -153,10 +152,7 @@ function SalesDashboardView() {
                 onChange={(e) => handleSearchProduct(e.target.value)}
               />
             </form>
-            <div className="flex items-center gap-2 border border-gray-300 py-1 px-2 rounded cursor-pointer">
-              <img className="h-6" src={filterIcon} alt="filter icon" />
-              <p>Filtros</p>
-            </div>
+            <FiltersSection />
           </div>
         </header>
 
