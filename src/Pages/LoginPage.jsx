@@ -63,12 +63,12 @@ function LoginPage() {
           onSubmit={handleSubmit}
           className="flex justify-center items-center flex-col px-5 py-3"
         >
-          <header className="mb-3">
+          <header className="mb-3 flex justify-center items-center flex-col">
             <div className="w-40 h-40 rounded-full bg-sky-950 p-5 flex justify-center items-center my-2">
               <img src={LogoImg} alt="Surf Data Logo" />
             </div>
             <div>
-              <h5 className="text-center">Login - Surf Data</h5>
+              <h5 className="text-center font-linter">Login - Surf Data</h5>
             </div>
           </header>
 
@@ -109,7 +109,7 @@ function LoginPage() {
               Ingresar
             </button>
           </div>
-          <p className="m-3">Sistema Administrativo</p>
+          <p className="m-3 font-linter">Sistema Administrativo</p>
         </form>
       </main>
     </div>

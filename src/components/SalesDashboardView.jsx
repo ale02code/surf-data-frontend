@@ -78,7 +78,7 @@ function SalesDashboardView() {
   };
 
   return (
-    <div className="overflow-y-hidden">
+    <div className="overflow-y-hidden ">
       <main className="px-5 mt-3">
         <div className="overflow-hidden"> {saleFormOpen && <SaleForm />} </div>
         <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
