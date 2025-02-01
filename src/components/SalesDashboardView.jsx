@@ -157,7 +157,7 @@ function SalesDashboardView() {
         </header>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-gray-200 border border-gray-300 mb-5">
+          <table className="min-w-full divide-gray-200 border border-gray-300 mb-5 overflow-x-auto">
             <thead className="bg-gray-100">
               <tr>
                 {headers.map((header, index) => (

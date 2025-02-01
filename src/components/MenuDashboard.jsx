@@ -5,7 +5,6 @@ import { WidthMobileContext } from "../context/WidthMobileContext";
 
 // Icons imports
 import menuIcon from "../assets/icons/dashboard-icons/menu.png";
-import closeIcon from "../assets/icons/dashboard-icons/close.png";
 
 import reportIcon from "../assets/icons/dashboard-icons/report.png";
 import salesIcon from "../assets/icons/dashboard-icons/sales.png";
@@ -19,7 +18,7 @@ function MenuDashboard() {
   const { width, setWidth } = useContext(WidthMobileContext);
 
   //states
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,10 +31,10 @@ function MenuDashboard() {
       }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("pageshow", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, [width]);
+    return () => window.removeEventListener("pageshow", handleResize);
+  }, []);
 
   const sections = [
     { label: "Ventas", img: salesIcon },
@@ -49,27 +48,25 @@ function MenuDashboard() {
   };
 
   const handleMenu = () => {
-    setMenu(!menu);
+    setMenu((prevState) => !prevState);
   };
 
   return (
     <>
       <div
         className={
-          width && menu
+          menu
             ? "hidden"
-            : "max-md:h-full max-md:bg-black max-md:bg-opacity-75 max-md:w-screen max-md:absolute"
+            : "max-md:h-full max-md:bg-black max-md:bg-opacity-75 max-md:w-screen max-md:absolute z-20"
         }
         onClick={handleMenu}
       ></div>
 
-      <section
-        className={width ? "relative h-8 ml-5 mt-5 overflow-hidden" : "hidden"}
-      >
-        <div className="absolute">
+      <section className={width ? "h-8 w-full" : "hidden"}>
+        <div className="absolute bg-white w-full">
           <img
-            className="h-8 cursor-pointer"
-            src={menu ? menuIcon : closeIcon}
+            className="h-8 cursor-pointer ml-5 mt-3"
+            src={menuIcon}
             onClick={handleMenu}
             alt="Menu icon"
           />
@@ -78,7 +75,7 @@ function MenuDashboard() {
 
       <header
         className={
-          width && menu
+          menu && width
             ? "hidden"
             : "h-full w-60 fixed top-0 left-0 z-[100] bg-gray-100 border-r border-gray-300 max-md:absolute max-md:z-30"
         }
