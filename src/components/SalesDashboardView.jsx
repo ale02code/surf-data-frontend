@@ -105,7 +105,7 @@ function SalesDashboardView() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto">
+        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-0">
           <InfoCard
             src={shoppingCartIcon}
             qua={filteredSales.length}
