@@ -17,13 +17,13 @@ function RegisterPage() {
       <div className="ml-60 flex-1 max-md:ml-0">
         <WidthMobileContextProvider>
           <MenuDashboard />
-        </WidthMobileContextProvider>
 
-        <div className="w-full min-h-screen">
-          <SearchProductContextProvider>
-            {currentDashboardView}
-          </SearchProductContextProvider>
-        </div>
+          <div className="w-full min-h-screen">
+            <SearchProductContextProvider>
+              {currentDashboardView}
+            </SearchProductContextProvider>
+          </div>
+        </WidthMobileContextProvider>
       </div>
     </section>
   );

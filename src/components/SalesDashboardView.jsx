@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 // context imports
 import { SaleFormContext } from "../context/SaleFormContext";
 import { SearchProductContext } from "../context/SearchProductContext";
+import { WidthMobileContext } from "../context/WidthMobileContext";
 
 // hooks imports
 import useFilterSales from "../hooks/useFilterSales";
@@ -33,6 +34,7 @@ function SalesDashboardView() {
   // Contexts
   const { saleFormOpen, setSaleFormOpen } = useContext(SaleFormContext);
   const { searchProduct, setSearchProduct } = useContext(SearchProductContext);
+  const { width, setWidth } = useContext(WidthMobileContext);
 
   //hooks
   const { filteredSales, loadingData, error } = useFilterSales();
@@ -46,6 +48,14 @@ function SalesDashboardView() {
   const handleStatus = (status) => {
     return status ? "Exitosa" : "Devolución";
   };
+
+  useEffect(() => {
+    if (width > 768) {
+      setWidth(true);
+    } else {
+      setWidth(false);
+    }
+  }, []);
 
   const headers = [
     "#",
@@ -91,21 +101,31 @@ function SalesDashboardView() {
             </h3>
           </hgroup>
           <div className="flex gap-2 items-center">
-            <button className="text-carbon-blue flex items-center gap-2 border border-carbon-blue px-4 py-2 rounded">
+            <button
+              className={
+                width
+                  ? "text-carbon-blue flex items-center gap-2 outline outline-1 outline-carbon-blue px-4 py-2 rounded h-10"
+                  : "text-carbon-blue flex items-center gap-2 outline outline-1 outline-carbon-blue px-4 py-2 rounded"
+              }
+            >
               <img className="h-6" src={cloudIcon} alt="download icon" />
-              Descargar ventas
+              {width ? "" : "Descargar ventas"}
             </button>
             <button
               onClick={handleSaleFormToggle}
-              className="text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold"
+              className={
+                width
+                  ? "text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold h-10"
+                  : "text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold"
+              }
             >
               <img className="h-5" src={plusIcon} alt="plus Icon" />
-              Añadir venta
+              {width ? "" : "Añadir venta"}
             </button>
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-0">
+        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-4">
           <InfoCard
             src={shoppingCartIcon}
             qua={filteredSales.length}
@@ -193,7 +213,7 @@ function SalesDashboardView() {
                       </p>
                     </div>
                   </td>
-                  <td className="px-5 py-2">
+                  <td className="px-5 py-2 flex justify-center items-center">
                     <button className="border border-gray-300 mr-2">
                       <img className="h-8" src={pencilIcon} alt="pencil icon" />
                     </button>
