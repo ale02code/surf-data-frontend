@@ -7,17 +7,18 @@ ofreciendo una solución moderna y escalable.
 ## 🚀 **Características**
 
 - 📊 Gestión de ventas.
-- 🖨️ Generación de PDFs con los detalles de las ventas.
+- 🖨️ Generación de PDFs con los detalles de venta.
 - 🌐 Soporte para múltiples empresas mediante URLs dinámicas.
-- 💡 Context API para manejo centralizado del estado.
+- 🧱 Cambios en tiempo real en ventas.
 
 ## 📁 **Estructura del Proyecto**
 
 - `src/components/` – Componentes reutilizables que forman partes específicas de la interfaz.
 - `src/pages/` – Vistas principales de la aplicación.
 - `src/context/` – Archivos relacionados con el manejo del estado global usando Context API.
-- `src/design/` – Estilos globales de la aplicación.
-  
+- `src/hooks/` – Procesamiento de los datos.
+- `src/services/` – Todo lo externo a react.
+
 ## 🧩 **Tecnologías Utilizadas**
 
 - **Frontend**:
@@ -30,6 +31,7 @@ ofreciendo una solución moderna y escalable.
 - **Herramientas**:
   - ESLint y Prettier (para formato y estilo de código)
   - react-router-dom (para manejo de rutas dinámicas)
+  - GASP (para manejar animaciones)
 
 ## 📜 **Licencia**
 

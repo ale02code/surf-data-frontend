@@ -88,7 +88,7 @@ function SalesDashboardView() {
   };
 
   return (
-    <div className="overflow-y-hidden ">
+    <div className="overflow-hidden">
       <main className="px-5 mt-3">
         <div className="overflow-hidden"> {saleFormOpen && <SaleForm />} </div>
         <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
@@ -177,7 +177,7 @@ function SalesDashboardView() {
         </header>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-gray-200 border border-gray-300 mb-5 overflow-x-auto">
+          <table className="min-w-96 w-full divide-gray-200 border border-gray-300 mb-5 overflow-x-auto">
             <thead className="bg-gray-100">
               <tr>
                 {headers.map((header, index) => (

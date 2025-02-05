@@ -6,10 +6,6 @@ const PrinterButton = ({ venta = [] }) => {
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = today.toLocaleDateString("es-ES", dateOptions);
 
-  useEffect(() => {
-    console.log(formattedDate);
-  }, []);
-
   const multi = venta.precio * venta.cantidad;
 
   const handlePrint = () => {
