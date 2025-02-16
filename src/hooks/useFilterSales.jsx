@@ -32,11 +32,9 @@ function useFilterSales() {
     getSales();
   }, [setSales]);
 
-  const filteredSales = sales
-    .filter((sale) =>
-      sale.producto?.toLowerCase().includes(searchProduct.trim().toLowerCase())
-    )
-    .sort((a, b) => a.precio - b.precio);
+  const filteredSales = sales.filter((sale) =>
+    sale.producto?.toLowerCase().includes(searchProduct.trim().toLowerCase())
+  );
 
   return { filteredSales, loadingData, error };
 }

@@ -87,11 +87,18 @@ function SalesDashboardView() {
     console.log(searchProduct);
   };
 
+  const handlePrintSales = () => {
+    return window.print();
+  };
+
   return (
     <div className="overflow-hidden">
-      <main className="px-5 mt-3">
-        <div className="overflow-hidden"> {saleFormOpen && <SaleForm />} </div>
-        <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300">
+      <main className="px-5 mt-3 ">
+        <div className="overflow-hidden print:hidden">
+          {" "}
+          {saleFormOpen && <SaleForm />}{" "}
+        </div>
+        <div className="flex justify-between items-center pt-3 pb-2 mb-3 border-b border-gray-300 print:hidden">
           <hgroup>
             <h1 className="text-2xl font-bold capitalize">
               Dashboard - {empresa}
@@ -102,6 +109,7 @@ function SalesDashboardView() {
           </hgroup>
           <div className="flex gap-2 items-center">
             <button
+              onClick={handlePrintSales}
               className={
                 width
                   ? "text-carbon-blue flex items-center gap-2 outline outline-1 outline-carbon-blue px-4 py-2 rounded h-10"
@@ -125,7 +133,7 @@ function SalesDashboardView() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-4">
+        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-4 print:hidden">
           <InfoCard
             src={shoppingCartIcon}
             qua={filteredSales.length}
@@ -148,7 +156,7 @@ function SalesDashboardView() {
           />
         </div>
 
-        <header className="flex items-center justify-between mb-4">
+        <header className="flex items-center justify-between mb-4 print:hidden">
           <h2 className="text-xl font-semibold">Todas las ventas</h2>
           <div className="flex items-center gap-2">
             <form
@@ -176,7 +184,7 @@ function SalesDashboardView() {
           </div>
         </header>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3">
           <table className="min-w-96 w-full divide-gray-200 border border-gray-300 mb-5 overflow-x-auto">
             <thead className="bg-gray-100">
               <tr>

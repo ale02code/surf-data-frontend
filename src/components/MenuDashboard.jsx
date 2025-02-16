@@ -52,7 +52,7 @@ function MenuDashboard() {
   };
 
   return (
-    <>
+    <aside className="print:hidden">
       <div
         className={
           menu
@@ -114,7 +114,7 @@ function MenuDashboard() {
           </nav>
         </div>
       </header>
-    </>
+    </aside>
   );
 }
 
