@@ -186,7 +186,7 @@ function SalesDashboardView() {
 
         <div className="overflow-x-auto print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3">
           <table className="min-w-96 w-full divide-gray-200 border border-gray-300 mb-5 overflow-x-auto">
-            <thead className="bg-gray-100">
+            <thead className="bg-gray-100"> 
               <tr>
                 {headers.map((header, index) => (
                   <th

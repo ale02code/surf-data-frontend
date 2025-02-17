@@ -18,23 +18,27 @@ function MenuDashboard() {
   const { width, setWidth } = useContext(WidthMobileContext);
 
   //states
-  const [menu, setMenu] = useState(true);
+  const [menu, setMenu] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleResize = () => {
       let screenWidth = window.innerWidth;
 
       if (screenWidth <= 768) {
+        setMenu(true);
         setWidth(true);
       } else {
+        setMenu(false);
         setWidth(false);
       }
     };
 
-    window.addEventListener("pageshow", handleResize);
+    handleResize();
 
-    return () => window.removeEventListener("pageshow", handleResize);
-  }, []);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setWidth]);
 
   const sections = [
     { label: "Ventas", img: salesIcon },
@@ -75,7 +79,7 @@ function MenuDashboard() {
 
       <header
         className={
-          menu && width
+          menu
             ? "hidden"
             : "h-full w-60 fixed top-0 left-0 z-[100] bg-gray-100 border-r border-gray-300 max-md:absolute max-md:z-30"
         }
