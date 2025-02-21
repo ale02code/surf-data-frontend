@@ -24,7 +24,7 @@ function MenuDashboard() {
     const handleResize = () => {
       let screenWidth = window.innerWidth;
 
-      if (screenWidth <= 768) {
+      if (screenWidth < 768) {
         setMenu(true);
         setWidth(true);
       } else {
@@ -38,7 +38,7 @@ function MenuDashboard() {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [setWidth]);
+  }, [width]);
 
   const sections = [
     { label: "Ventas", img: salesIcon },

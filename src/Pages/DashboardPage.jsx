@@ -13,7 +13,7 @@ function RegisterPage() {
   const currentDashboardView = useDashboardView();
 
   return (
-    <section className="h-screen w-full flex overflow-x-hidden">
+    <section className="min-h-dvh w-full flex overflow-x-hidden">
       <div className="ml-60 flex-1 max-md:ml-0">
         <WidthMobileContextProvider>
           <MenuDashboard />
