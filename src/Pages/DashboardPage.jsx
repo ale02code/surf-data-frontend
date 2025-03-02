@@ -18,7 +18,7 @@ function RegisterPage() {
         <WidthMobileContextProvider>
           <MenuDashboard />
 
-          <div className="w-full min-h-screen">
+          <div className="max-w-full min-h-screen">
             <SearchProductContextProvider>
               {currentDashboardView}
             </SearchProductContextProvider>

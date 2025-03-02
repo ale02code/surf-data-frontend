@@ -92,7 +92,7 @@ function SalesDashboardView() {
   };
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden max-w-full">
       <main className="px-5 mt-3 ">
         <div className="overflow-hidden print:hidden">
           {" "}
@@ -133,7 +133,7 @@ function SalesDashboardView() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-4 print:hidden">
+        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-4 max-md:justify-between print:hidden">
           <InfoCard
             src={shoppingCartIcon}
             qua={filteredSales.length}
@@ -156,9 +156,11 @@ function SalesDashboardView() {
           />
         </div>
 
-        <header className="flex items-center justify-between mb-4 print:hidden">
-          <h2 className="text-xl font-semibold">Todas las ventas</h2>
-          <div className="flex items-center gap-2">
+        <header className="flex items-center justify-between mb-4 print:hidden max-md:w-full max-md:justify-between">
+          <h2 className={!width ? "text-xl font-semibold" : "hidden"}>
+            Todas las ventas
+          </h2>
+          <div className="flex items-center gap-2 max-md:w-full max-md:justify-between">
             <form
               onSubmit={handleSubmit}
               className="flex gap-2 border border-gray-300 py-1 px-2 rounded cursor-pointer"
@@ -184,7 +186,7 @@ function SalesDashboardView() {
           </div>
         </header>
 
-        <div className="print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3">
+        {/* <div className="print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3">
           <table className="w-full divide-gray-200 border border-gray-300 mb-5 overflow-x-auto">
             <thead className="bg-gray-100 overflow-x-auto">
               <tr>
@@ -231,7 +233,7 @@ function SalesDashboardView() {
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
       </main>
     </div>
   );
