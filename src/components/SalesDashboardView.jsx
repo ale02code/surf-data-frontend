@@ -186,54 +186,58 @@ function SalesDashboardView() {
           </div>
         </header>
 
-        {/* <div className="print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3">
-          <table className="w-full divide-gray-200 border border-gray-300 mb-5 overflow-x-auto">
-            <thead className="bg-gray-100 overflow-x-auto">
-              <tr>
-                {headers.map((header, index) => (
-                  <th
-                    key={index}
-                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-gray-200 overflow-x-auto">
-              {filteredSales.map((sale, index) => (
-                <tr
-                  className="border border-gray-300 overflow-hidden text-center"
-                  key={sale.id}
-                >
-                  <td className="px-5 py-2 text-center">{index + 1}</td>
-                  <td className="px-5 py-2 text-center">{sale.producto}</td>
-                  <td className="px-5 py-2 whitespace-nowrap">{sale.precio}</td>
-                  <td className="px-5 py-2 whitespace-nowrap">
-                    {sale.cantidad}
-                  </td>
-                  <td className="px-5 py-2">
-                    <div
-                      className={`h-full rounded-lg ${
-                        sale.estado ? "bg-green-300" : "bg-purple-300"
-                      }`}
+        <div id="sales-table" className="print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3 w-full h-full overflow-x-auto">
+          <div className="w-[375px]">
+            <table className="w-full divide-gray-200 border border-gray-300 mb-5">
+              <thead className="bg-gray-100">
+                <tr>
+                  {headers.map((header, index) => (
+                    <th
+                      key={index}
+                      className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      <p className="text-carbon-blue font-semibold">
-                        {handleStatus(sale.estado)}
-                      </p>
-                    </div>
-                  </td>
-                  <td className="px-5 py-2 flex justify-center items-center">
-                    <button className="border border-gray-300 mr-2">
-                      <img className="h-8" src={pencilIcon} alt="pencil icon" />
-                    </button>
-                    <PrinterButton venta={sale} />
-                  </td>
+                      {header}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div> */}
+              </thead>
+              <tbody className="bg-white divide-gray-200">
+                {filteredSales.map((sale, index) => (
+                  <tr
+                    className="border border-gray-300 text-center"
+                    key={sale.id}
+                  >
+                    <td className="px-5 py-2 text-center">{index + 1}</td>
+                    <td className="px-5 py-2 text-center">{sale.producto}</td>
+                    <td className="px-5 py-2">{sale.precio}</td>
+                    <td className="px-5 py-2">{sale.cantidad}</td>
+                    <td className="px-5 py-2">
+                      <div
+                        className={`h-full rounded-lg ${
+                          sale.estado ? "bg-green-300" : "bg-purple-300"
+                        }`}
+                      >
+                        <p className="text-carbon-blue font-semibold">
+                          {handleStatus(sale.estado)}
+                        </p>
+                      </div>
+                    </td>
+                    <td className="px-5 py-2 flex justify-center items-center">
+                      <button className="border border-gray-300 mr-2">
+                        <img
+                          className="h-8"
+                          src={pencilIcon}
+                          alt="pencil icon"
+                        />
+                      </button>
+                      <PrinterButton venta={sale} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </main>
     </div>
   );

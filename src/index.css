@@ -78,3 +78,14 @@ input[type="number"] {
     transform: rotate(-10deg);
   }
 }
+
+/* sales-table scroll */
+#sales-table::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+#sales-table::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 5px;
+  /* Opcional: para bordes redondeados */
+}
