@@ -133,27 +133,31 @@ function SalesDashboardView() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-8 my-8 h-auto max-md:gap-4 max-md:justify-between print:hidden">
-          <InfoCard
-            src={shoppingCartIcon}
-            qua={filteredSales.length}
-            label="Ventas en total"
-          />
-          <InfoCard
-            src={returnIcon}
-            qua={handleCountReturnSales(filteredSales)}
-            label="Devoluciones en total"
-          />
-          <InfoCard
-            src={productsIcon}
-            qua={handleCountProducts(filteredSales)}
-            label="Productos en total"
-          />
-          <InfoCard
-            src={moneyIcon}
-            qua={handleCountProfit(filteredSales)}
-            label="Ganancias en total"
-          />
+        <div className="flex gap-2 mb-2 h-auto print:hidden">
+          <div className="flex gap-2 w-full max-md:w-1/2 max-md:block">
+            <InfoCard
+              src={shoppingCartIcon}
+              qua={filteredSales.length}
+              label="Ventas en total"
+            />
+            <InfoCard
+              src={returnIcon}
+              qua={handleCountReturnSales(filteredSales)}
+              label="Devoluciones en total"
+            />
+          </div>
+          <div className="flex gap-2 w-full max-md:w-1/2 max-md:block">
+            <InfoCard
+              src={productsIcon}
+              qua={handleCountProducts(filteredSales)}
+              label="Productos en total"
+            />
+            <InfoCard
+              src={moneyIcon}
+              qua={handleCountProfit(filteredSales)}
+              label="Ganancias en total"
+            />
+          </div>
         </div>
 
         <header className="flex items-center justify-between mb-4 print:hidden max-md:w-full max-md:justify-between">
@@ -186,8 +190,11 @@ function SalesDashboardView() {
           </div>
         </header>
 
-        <div id="sales-table" className="print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3 w-full h-full overflow-x-auto">
-          <div className="w-[375px]">
+        <div
+          id="sales-table"
+          className="print:block print:absolute print:inset-0 print:z-10 print:overflow-y-auto print:h-full print:w-full print:px-5 print:py-3 w-full h-full overflow-x-auto"
+        >
+          <div className="max-md:w-[375px] w-full">
             <table className="w-full divide-gray-200 border border-gray-300 mb-5">
               <thead className="bg-gray-100">
                 <tr>
