@@ -8,8 +8,9 @@ function FiltersSection() {
         name="filters"
         id="filters"
         className="cursor-pointer w-24 outline-none"
+        defaultValue={1}
       >
-        <option value="1" selected disabled>
+        <option value="1" disabled>
           Filtros
         </option>
         <option value="mayor">Mayor precio</option>

@@ -19,6 +19,7 @@ import PrinterButton from "../components/PrinterButton";
 import FiltersSection from "./FiltersSection";
 import LoadingModule from "../components/LoadingModule";
 import ErrorModule from "./ErrorModule";
+import DatePicker from "./DatePicker";
 
 // icons imports
 import plusIcon from "../assets/icons/dashboard-icons/plus.svg";
@@ -84,7 +85,6 @@ function SalesDashboardView() {
 
   const handleSearchProduct = (searchValue) => {
     setSearchProduct(searchValue);
-    console.log(searchProduct);
   };
 
   const handlePrintSales = () => {
@@ -186,7 +186,10 @@ function SalesDashboardView() {
                 onChange={(e) => handleSearchProduct(e.target.value)}
               />
             </form>
-            <FiltersSection />
+            <div className="flex gap-2 items-center">
+              <DatePicker />
+              <FiltersSection />
+            </div>
           </div>
         </header>
 
