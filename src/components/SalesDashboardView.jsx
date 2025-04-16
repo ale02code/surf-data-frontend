@@ -232,7 +232,7 @@ function SalesDashboardView() {
                         </p>
                       </div>
                     </td>
-                    <td className="px-5 py-2 flex justify-center items-center">
+                    <td className="px-5 py-2 flex justify-center items-center print:hidden">
                       <button className="border border-gray-300 mr-2">
                         <img
                           className="h-8"
