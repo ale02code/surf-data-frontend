@@ -8,6 +8,7 @@ import { WidthMobileContext } from "../context/WidthMobileContext";
 // hooks imports
 import useFilterSales from "../hooks/useFilterSales";
 import useGetTotals from "../hooks/useGetTotals";
+import usePrint from "../hooks/usePrint";
 
 // params imports
 import { useParams } from "react-router-dom";
@@ -41,6 +42,7 @@ function SalesDashboardView() {
   const { filteredSales, loadingData, error } = useFilterSales();
   const { handleCountReturnSales, handleCountProducts, handleCountProfit } =
     useGetTotals();
+  const { isPrinting, print } = usePrint();
 
   // Params
   const { empresa } = useParams();
@@ -87,10 +89,6 @@ function SalesDashboardView() {
     setSearchProduct(searchValue);
   };
 
-  const handlePrintSales = () => {
-    return window.print();
-  };
-
   return (
     <div className="overflow-hidden max-w-full">
       <main className="px-5 mt-3 ">
@@ -109,7 +107,7 @@ function SalesDashboardView() {
           </hgroup>
           <div className="flex gap-2 items-center">
             <button
-              onClick={handlePrintSales}
+              onClick={() => print()}
               className={
                 width
                   ? "text-carbon-blue flex items-center gap-2 outline outline-1 outline-carbon-blue px-4 py-2 rounded h-10"
@@ -201,14 +199,16 @@ function SalesDashboardView() {
             <table className="w-full divide-gray-200 border border-gray-300 mb-5">
               <thead className="bg-gray-100">
                 <tr>
-                  {headers.map((header, index) => (
-                    <th
-                      key={index}
-                      className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      {header}
-                    </th>
-                  ))}
+                  {(isPrinting ? headers.slice(0, -1) : headers).map(
+                    (header, index) => (
+                      <th
+                        key={index}
+                        className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        {header}
+                      </th>
+                    )
+                  )}
                 </tr>
               </thead>
               <tbody className="bg-white divide-gray-200">

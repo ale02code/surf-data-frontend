@@ -13,10 +13,20 @@ function usePrint() {
     return () => {
       window.removeEventListener("beforeprint", handleBeforePrint);
       window.removeEventListener("afterprint", handleAfterPrint);
-    };  
+    };
   }, []);
 
-  return isPrinting;
+  const print = () => {
+    setIsPrinting(true);
+    setTimeout(() => {
+      window.print();
+      setTimeout(() => {
+        setIsPrinting(false);
+      }, 500);
+    }, 100);
+  };
+
+  return { isPrinting, print };
 }
 
 export default usePrint;
