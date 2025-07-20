@@ -54,13 +54,13 @@ function SaleForm() {
   return (
     <section className="min-h-screen w-screen absolute inset-0 flex justify-center items-center overflow-hidden">
       <div
-        className="h-full w-full absolute z-20 right-0 top-0 bg-black bg-opacity-50"
+        className="h-full w-full absolute z-[101] right-0 top-0 bg-black bg-opacity-50 overflow-hidden"
         onClick={() => setSaleFormOpen(false)}
       ></div>
-      <div className="absolute z-20 w-full max-w-md bg-[#212529] p-6 rounded-lg flex justify-center items-center">
+      <div className="absolute z-[200] w-full max-w-md bg-[#212529] p-6 rounded-lg flex justify-center items-center overflow-hidden">
         <form
           onSubmit={handleCreateSale}
-          className="flex flex-col gap-4 text-white"
+          className="flex flex-col gap-4 text-white overflow-hidden"
         >
           <h6 className="text-3xl uppercase font-bold text-center">
             Crear nueva venta

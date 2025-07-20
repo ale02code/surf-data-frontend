@@ -4,8 +4,7 @@ import { DashboardViewContext } from "../context/DashboardViewContext";
 
 // Components imports
 import SalesDashboardView from "../components/SalesDashboardView";
-import ReportsDashboardView from "../components/ReportsDashboardView";
-import QueriesDashboardView from "../components/QueriesDashboardView";
+import ReportsDashboardView from "../components/ReportsDashboardView";  
 import SettingsDashboardView from "../components/SettingsDashboard";
 
 function useDashboardView() {
@@ -15,7 +14,6 @@ function useDashboardView() {
   const optionsDashboardView = {
     Ventas: <SalesDashboardView />,
     Reportes: <ReportsDashboardView />,
-    Consultas: <QueriesDashboardView />,
     Configuracion: <SettingsDashboardView />,
   };
 

@@ -402,7 +402,7 @@ function HomePage() {
       {/* Rights */}
       <div className="h-10 w-full bg-neutral-900 text-white flex justify-center items-center">
         <p className="text-center text-lg">
-          design and develop by
+          designed and developed by
           <a
             className="font-linter font-semibold mx-1"
             href="https://www.instagram.com/ale02.code/"

@@ -8,7 +8,6 @@ import menuIcon from "../assets/icons/dashboard-icons/menu.png";
 
 import reportIcon from "../assets/icons/dashboard-icons/report.png";
 import salesIcon from "../assets/icons/dashboard-icons/sales.png";
-import queriesIcon from "../assets/icons/dashboard-icons/query.png";
 import settingsIcon from "../assets/icons/dashboard-icons/settings.png";
 import logoutIcon from "../assets/icons/dashboard-icons/logout.png";
 
@@ -43,7 +42,6 @@ function MenuDashboard() {
   const sections = [
     { label: "Ventas", img: salesIcon },
     { label: "Reportes", img: reportIcon },
-    { label: "Consultas", img: queriesIcon },
     { label: "Configuracion", img: settingsIcon },
   ];
 

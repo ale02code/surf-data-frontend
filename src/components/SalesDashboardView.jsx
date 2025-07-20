@@ -17,7 +17,8 @@ import { useParams } from "react-router-dom";
 import InfoCard from "../components/InfoCard";
 import SaleForm from "../components/SaleForm";
 import PrinterButton from "../components/PrinterButton";
-import FiltersSection from "./FiltersSection";
+// TODO: Put it on analytics file
+// import FiltersSection from "./FiltersSection";
 import LoadingModule from "../components/LoadingModule";
 import ErrorModule from "./ErrorModule";
 
@@ -118,11 +119,7 @@ function SalesDashboardView() {
             </button>
             <button
               onClick={handleSaleFormToggle}
-              className={
-                width
-                  ? "text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold h-10"
-                  : "text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold"
-              }
+              className="text-carbon-blue bg-green-500 px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 flex items-center gap-2 font-semibold h-10"
             >
               <img className="h-5" src={plusIcon} alt="plus Icon" />
               {width ? "" : "Añadir venta"}
@@ -183,7 +180,7 @@ function SalesDashboardView() {
                 onChange={(e) => handleSearchProduct(e.target.value)}
               />
             </form>
-            <FiltersSection />
+            {/* <FiltersSection /> */}
           </div>
         </header>
 
